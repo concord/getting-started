@@ -1,0 +1,12 @@
+{
+  "zookeeper_hosts": "localhost:2181",
+  "zookeeper_path": "/bolt",
+  "executable_arguments": ["word_generator.rb"],
+  "executable_name": "runner.bash",
+  "compress_files": ["word_generator.rb", "Gemfile.lock",
+                     "Gemfile", "runner.bash"],
+  "computation_name": "word-generator",
+  "environment_variables": [
+    "GLOG_v=2"
+  ]
+}
