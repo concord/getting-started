@@ -20,7 +20,9 @@ class WordGenerator
   end
 
   def process_timer(ctx, key, time)
-    ctx.produce_record('words', DICTIONARY.sample, '')
+    (0..1024).each do |i|
+      ctx.produce_record('words', DICTIONARY.sample, '')
+    end
     ctx.set_timer(key, time_millis + 5000)
   end
 
