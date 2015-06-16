@@ -1,13 +1,14 @@
 {
-  "zookeeper_hosts": "localhost:2181",
+  "zookeeper_hosts": "zk-1.example-domain.internal:2181",
   "zookeeper_path": "/bolt",
   "executable_arguments": ["word_counter.rb"],
   "executable_name": "runner.bash",
-  "compress_files": ["word_counter.rb", "Gemfile",
-                     "Gemfile.lock", "runner.bash"],
+  "compress_files": ["word_counter.rb", "Gemfile.lock",
+                     "Gemfile", "runner.bash"],
   "computation_name": "word-counter",
   "environment_variables": [
     "GLOG_v=2"
   ],
+  "docker_container": "concord/client_devbox",
   "mem": 1024
 }
