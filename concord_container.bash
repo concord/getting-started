@@ -49,5 +49,5 @@ echo "Running $CMD"
 # https://github.com/docker/machine/issues/641
 # last two comments
 
-# exec $CMD
+exec $CMD
 
