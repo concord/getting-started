@@ -21,14 +21,17 @@ USABLE_MEM=`expr $MEM / 1024 / 4 \* 3`
 if [ $(command -v boot2docker) ]; then
   BOOT2DOCKER=1
 
+  echo "Checking boot2docker status..."
   # check to see if there is a box (status code 0 == box exists)
   boot2docker status > /dev/null 2>&1
 
   if [ $? -ne 1 ]; then
+    echo "Checking boot2docker memory is sufficient (${USABLE_MEM}MB required)..."
     # if there is a box already, ensure it's configured
     boot2docker_memory=$(boot2docker config | grep Memory | awk '{print $3}')
 
     if [ $(expr $boot2docker_memory \< $USABLE_MEM) -ne 0 ]; then
+      echo "Insufficient memory, reinitializing boot2docker machine..."
       # if memory is too low, delete and reinit
       boot2docker delete
       boot2docker init -m $USABLE_MEM
