@@ -56,7 +56,9 @@ CMD="docker run -t -i -v $(pwd):/workspace -p 5050:5050 -p 5051:5051 -p 9000:900
 
 if [ $BOOT2DOCKER -ne 0 ]; then
   # boot2docker systems need to share vbox ip to container
-  CMD="$CMD -e \"VBOX_HOST=$(boot2docker ip)\""
+  boot2docker_ip=$(boot2docker ip)
+  echo "The boot2docker IP address is $boot2docker_ip"
+  CMD="$CMD -e \"VBOX_HOST=$boot2docker_ip\""
 else
   # linux systems need sudo
   CMD="sudo $CMD"
