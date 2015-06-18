@@ -5,9 +5,11 @@ NPROCS=1
 MEM=4096
 
 if [ $OSTYPE == "linux-gnu" ]; then
+  echo "Linux Detected... Determining hardware specs..."
   NPROCS=$(grep -c ^processor /proc/cpuinfo)
   MEM=$(grep MemTotal /proc/meminfo | awk '{print $2}')
-elif [ $OSTYPE == "darwin" ]; then
+elif [[ $OSTYPE =~ darwin.* ]]; then
+  echo "Mac OS X Detected... Determining hardware specs..."
   NPROCS=$(sysctl -n hw.ncpu)
   MEM=$(sysctl -n hw.memsize) 
   MEM=`expr $MEM / 1024`
@@ -34,16 +36,19 @@ if [ $(command -v boot2docker) ]; then
       echo "Insufficient memory, reinitializing boot2docker machine..."
       # if memory is too low, delete and reinit
       boot2docker delete
-      boot2docker init -m $USABLE_MEM
+      boot2docker init -m $USABLE_MEM > /dev/null 2>&1
     fi
   else
+    echo "Initializing new boot2docker virtual machine with ${USABLE_MEM}MB memory..."
     # if there isn't a box, init it
-    boot2docker init -m $USABLE_MEM
+    boot2docker init -m $USABLE_MEM > /dev/null 2>&1
   fi
 
   # start the box (idempotent)
-  boot2docker start
+  echo "Starting boot2docker virtualbox..."
+  boot2docker start > /dev/null 2>&1
   # set environment
+  echo "Initializing Docker environment..."
   eval `boot2docker shellinit`
 fi
 
