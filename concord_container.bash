@@ -1,4 +1,4 @@
-#!/bin/bash --login
+#!/bin/bash
 
 BOOT2DOCKER=0
 NPROCS=1
@@ -34,9 +34,10 @@ if [ $(command -v boot2docker) ]; then
 
     if [ $(expr $boot2docker_memory \< $USABLE_MEM) -ne 0 ]; then
       echo "Insufficient memory, reinitializing boot2docker machine..."
+      echo "(Note: This is currently deprecated due to unreliable results from boot2docker config)"
       # if memory is too low, delete and reinit
-      boot2docker delete
-      boot2docker init -m $USABLE_MEM > /dev/null 2>&1
+      # boot2docker delete
+      # boot2docker init -m $USABLE_MEM > /dev/null 2>&1
     fi
   else
     echo "Initializing new boot2docker virtual machine with ${USABLE_MEM}MB memory..."
