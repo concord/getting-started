@@ -53,6 +53,7 @@ if [ $(command -v boot2docker) ]; then
   eval `boot2docker shellinit`
 fi
 
+UPDATE_CMD="docker pull concord/client_devbox"
 CMD="docker run -t -i -v $(pwd):/workspace -p 5050:5050 -p 5051:5051 -p 9000:9000"
 
 if [ $BOOT2DOCKER -ne 0 ]; then
@@ -62,10 +63,15 @@ if [ $BOOT2DOCKER -ne 0 ]; then
   CMD="$CMD -e \"VBOX_HOST=$boot2docker_ip\""
 else
   # linux systems need sudo
+  UPDATE_CMD="sudo $UPDATE_CMD"
   CMD="sudo $CMD"
 fi
 
 CMD="$CMD concord/client_devbox"
+
+echo "Running $UPDATE_CMD"
+
+$UPDATE_CMD
 
 echo "Running $CMD"
 
