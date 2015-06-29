@@ -1,4 +1,4 @@
-#/bin/bash --login
+#!/bin/bash --login
 set -x
 
 TASK_DIRECTORY=$(find /var/lib/mesos/slaves/ -iname "$1")/
