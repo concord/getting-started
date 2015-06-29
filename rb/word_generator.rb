@@ -13,17 +13,17 @@ def time_millis()
 end
 
 class WordGenerator
-  def init(ctx)
+  def init(context)
     future = time_millis
     log "Initialized Computation"
-    ctx.set_timer('default', time_millis)
+    context.set_timer('default', time_millis)
   end
 
-  def process_timer(ctx, key, time)
+  def process_timer(context, key, time)
     (0..1024).each do |i|
-      ctx.produce_record('words', DICTIONARY.sample, '')
+      context.produce_record('words', DICTIONARY.sample, '')
     end
-    ctx.set_timer(key, time_millis + 5000)
+    context.set_timer(key, time_millis + 5000)
   end
 
   def metadata

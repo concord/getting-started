@@ -13,11 +13,11 @@ class WordCounter
     self.total_words = 0
   end
 
-  def init(ctx)
+  def init(context)
     log "Initialized word counter"
   end
 
-  def process_record(ctx, record)
+  def process_record(context, record)
     key = record.key
     self.words[key] ||= 0
     self.words[key] += 1
