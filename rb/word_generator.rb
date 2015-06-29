@@ -12,7 +12,7 @@ def time_millis()
 end
 
 class WordGenerator
-  # init takes one parameter:
+  # init takes one argument:
   # - context: the context object used to interact with the framework
   def init(context)
     future = time_millis
