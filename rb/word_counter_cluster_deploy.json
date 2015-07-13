@@ -1,5 +1,5 @@
 {
-  "zookeeper_hosts": "zk-1.example-domain.internal:2181",
+  "zookeeper_hosts": "localhost:2181",
   "zookeeper_path": "/bolt",
   "executable_arguments": ["word_counter.rb"],
   "executable_name": "runner.bash",
