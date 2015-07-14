@@ -2,4 +2,5 @@
 virtualenv .env
 source .env/bin/activate
 pip install -r requirements.txt
-exec "$@"
+echo "Directory: $(pwd)"
+exec python "$@"
