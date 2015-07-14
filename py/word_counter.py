@@ -27,5 +27,5 @@ class WordCounter(Computation):
             name='word-counter',
             istreams=['words'],
             ostreams=[])
-
-concord.serve_computation(WordCounter())
+print "foo"
+concord.computation.serve_computation(WordCounter())

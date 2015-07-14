@@ -39,4 +39,4 @@ class WordSource(Computation):
             istreams=[],
             ostreams=['words'])
 
-concord.serve_computation(WordCounter())
+concord.computation.serve_computation(WordCounter())
