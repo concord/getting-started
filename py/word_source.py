@@ -35,7 +35,7 @@ class WordSource(Computation):
 
     def metadata(self):
         return Metadata(
-            name='word-counter-py',
+            name='word-source',
             istreams=[],
             ostreams=['words'])
 

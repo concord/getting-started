@@ -1,0 +1,9 @@
+{
+  "zookeeper_hosts": "localhost:2181",
+  "zookeeper_path": "/bolt",
+  "executable_arguments": ["word_counter.py"],
+  "executable_name": "runner.bash",
+  "compress_files": ["word_counter.py", "requirements.txt", "runner.bash"],
+  "computation_name": "word-counter",
+  "mem": 1024
+}
