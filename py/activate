@@ -1,0 +1,6 @@
+#!/bin/bash --login
+
+if [[ ! -d .env ]]; then
+    virtualenv .env
+fi
+source .env/bin/activate
