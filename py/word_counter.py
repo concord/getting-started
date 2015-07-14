@@ -1,7 +1,7 @@
-#!/usr/bin/env python
 from concord.computation import (
     Computation,
-    Metadata
+    Metadata,
+    serve_computation
 )
 import sys
 
@@ -27,5 +27,6 @@ class WordCounter(Computation):
             name='word-counter',
             istreams=['words'],
             ostreams=[])
+
 print "Main"
-concord.computation.serve_computation(WordCounter())
+serve_computation(WordCounter())

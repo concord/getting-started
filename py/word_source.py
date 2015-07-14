@@ -1,8 +1,9 @@
-#!/usr/bin/env python
 from concord.computation import (
     Computation,
-    Metadata
+    Metadata,
+    serve_computation
 )
+
 import sys
 import time
 
@@ -40,4 +41,4 @@ class WordSource(Computation):
             ostreams=['words'])
 
 print "Main"
-concord.computation.serve_computation(WordCounter())
+serve_computation(WordSource())
