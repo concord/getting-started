@@ -11,7 +11,7 @@ class WordCounter(Computation):
         self.pidx = 0 # print index
 
     def init(self, ctx):
-        print("Counter initialized", file=sys.stderr)
+        print "Counter initialized"
 
     def process_timer(self, ctx, key, time):
         raise Exception('process_timer not implemented')
@@ -20,12 +20,12 @@ class WordCounter(Computation):
         self.pidx += 1
         self.dict[record.key] += 1
         if (self.pidx % 100) == 0:
-            print(self.pidx, file=sys.stderr)
+            print self.pidx
 
     def metadata(self):
         return Metadata(
             name='word-counter',
             istreams=['words'],
             ostreams=[])
-print "foo"
+print "Main"
 concord.computation.serve_computation(WordCounter())

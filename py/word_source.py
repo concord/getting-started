@@ -20,7 +20,7 @@ class WordSource(Computation):
         return random.choice(self.words)
 
     def init(self, ctx):
-        print("Source initialized", file=sys.stderr)
+         print "Source initialized"
         ctx.set_timer('loop', time_millis())
 
     def process_timer(self, ctx, key, time):
@@ -39,4 +39,5 @@ class WordSource(Computation):
             istreams=[],
             ostreams=['words'])
 
+print "Main"
 concord.computation.serve_computation(WordCounter())
