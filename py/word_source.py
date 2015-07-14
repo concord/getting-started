@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import concord.computation.(
+from concord.computation import (
     Computation,
     Metadata
 )
