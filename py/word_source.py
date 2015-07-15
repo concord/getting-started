@@ -26,10 +26,11 @@ class WordSource(Computation):
 
     def process_timer(self, ctx, key, time):
         # stream, key, value. empty value, no need for val
-        ctx.produce_record("words", self.sample(), '-')
+        for _ in range(0, 1024):
+            ctx.produce_record("words", self.sample(), '-')
 
         # emit records every 100ms
-        ctx.set_timer("main_loop", time_millis() + 100)
+        ctx.set_timer("main_loop", time_millis() + 5000)
 
     def process_record(self, ctx, record):
         raise Exception('process_record not implemented')
