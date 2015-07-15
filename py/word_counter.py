@@ -19,9 +19,13 @@ class WordCounter(Computation):
 
     def process_record(self, ctx, record):
         self.pidx += 1
-        self.dict[record.key] += 1
+        if self.dict.has_key(record.key):
+            self.dict[record.key] += 1
+        else:
+            self.dict[record.key] = 1
+
         if (self.pidx % 100) == 0:
-            print self.pidx
+            print self.dict
 
     def metadata(self):
         return Metadata(
