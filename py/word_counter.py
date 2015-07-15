@@ -24,7 +24,7 @@ class WordCounter(Computation):
         else:
             self.dict[record.key] = 1
 
-        if (self.pidx % 100) == 0:
+        if (self.pidx % 1024) == 0:
             print self.dict
 
     def metadata(self):
