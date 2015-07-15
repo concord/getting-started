@@ -1,9 +1,10 @@
+import sys
+import concord
 from concord.computation import (
     Computation,
     Metadata,
     serve_computation
 )
-import sys
 
 class WordCounter(Computation):
     def __init__(self):

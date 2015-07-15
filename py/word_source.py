@@ -1,11 +1,11 @@
+import sys
+import time
+import concord
 from concord.computation import (
     Computation,
     Metadata,
     serve_computation
 )
-
-import sys
-import time
 
 def time_millis():
     return int(round(time.time() * 1000))
@@ -21,7 +21,7 @@ class WordSource(Computation):
         return random.choice(self.words)
 
     def init(self, ctx):
-         print "Source initialized"
+        print "Source initialized"
         ctx.set_timer('loop', time_millis())
 
     def process_timer(self, ctx, key, time):
