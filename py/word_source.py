@@ -6,6 +6,8 @@ from concord.computation import (
     Metadata,
     serve_computation
 )
+import logging
+logger = logging.getLogger(__name__)
 
 def time_millis():
     return int(round(time.time() * 1000))
@@ -21,7 +23,7 @@ class WordSource(Computation):
         return random.choice(self.words)
 
     def init(self, ctx):
-        print "Source initialized"
+        logger.info("Source initialized")
         ctx.set_timer('loop', time_millis())
 
     def process_timer(self, ctx, key, time):
@@ -41,5 +43,5 @@ class WordSource(Computation):
             istreams=[],
             ostreams=['words'])
 
-print "Main"
+logger.info("Main")
 serve_computation(WordSource())

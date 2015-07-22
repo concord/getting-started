@@ -5,6 +5,8 @@ from concord.computation import (
     Metadata,
     serve_computation
 )
+import logging
+logger = logging.getLogger(__name__)
 
 class WordCounter(Computation):
     def __init__(self):
@@ -12,7 +14,7 @@ class WordCounter(Computation):
         self.pidx = 0 # print index
 
     def init(self, ctx):
-        print "Counter initialized"
+        logger.info("Counter initialized")
 
     def process_timer(self, ctx, key, time):
         raise Exception('process_timer not implemented')
@@ -25,7 +27,7 @@ class WordCounter(Computation):
             self.dict[record.key] = 1
 
         if (self.pidx % 1024) == 0:
-            print self.dict
+            logger.info(self.dict)
 
     def metadata(self):
         return Metadata(
@@ -33,5 +35,5 @@ class WordCounter(Computation):
             istreams=['words'],
             ostreams=[])
 
-print "Main"
+logger.info("Main")
 serve_computation(WordCounter())
