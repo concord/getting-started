@@ -6,8 +6,11 @@ from concord.computation import (
     Metadata,
     serve_computation
 )
+
 import logging
+logging.basicConfig()
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
 
 def time_millis():
     return int(round(time.time() * 1000))

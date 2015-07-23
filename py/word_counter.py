@@ -5,8 +5,12 @@ from concord.computation import (
     Metadata,
     serve_computation
 )
+
+
 import logging
+logging.basicConfig()
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
 
 class WordCounter(Computation):
     def __init__(self):
