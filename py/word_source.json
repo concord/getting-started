@@ -3,7 +3,7 @@
   "zookeeper_path": "/bolt",
   "executable_arguments": ["word_source.py"],
   "executable_name": "runner.bash",
-  "compress_files": ["word_source.py", "requirements.txt", "runner.bash"],
+  "compress_files": ["word_source.py", "runner.bash"],
   "computation_name": "word-source",
   "mem": 1024
 }
