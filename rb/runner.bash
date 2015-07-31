@@ -1,4 +1,4 @@
 #!/bin/bash --login
 
 echo "Directory: $(pwd)"
-exec bundle exec ruby2.0 "$@"
+exec ruby2.0 "$@"
