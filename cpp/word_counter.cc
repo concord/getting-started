@@ -1,17 +1,17 @@
 #include <memory>
 #include <unordered_map>
+#include <algorithm>
 #include <bolt/glog_init.hpp>
 #include <bolt/Computation.hpp>
 #include <bolt/time_utils.hpp>
 
 
-final class WordCounter : public bolt::Computation {
+class WordCounter final : public bolt::Computation {
   public:
   using CtxPtr = bolt::Computation::CtxPtr;
 
   virtual void init(CtxPtr ctx) override {
     LOG(INFO) << "Init word count sink";
-    ctx->setTimer(bolt::timeNowMilli());
   }
 
   virtual void processRecord(CtxPtr ctx, bolt::FrameworkRecord &&r) override {

@@ -23,7 +23,7 @@ static const std::vector<std::string> kDictionary = {
   "refer", "fully", "chain", "shirt", "flour", "drops", "spite", "orbit"};
 
 
-final class WordSource : public bolt::Computation {
+class WordSource final : public bolt::Computation {
   public:
   using CtxPtr = bolt::Computation::CtxPtr;
 
@@ -39,14 +39,14 @@ final class WordSource : public bolt::Computation {
   virtual void
   processTimer(CtxPtr ctx, const std::string &key, int64_t time) override {
 
-    const static auto kDictSize = kDictSize.size();
+    const static auto kDictSize = kDictionary.size();
 
     for(auto i = 0u; i < 1024; ++i) {
-      std::string &bin = kDictionary[dist_(rand_) % kDictSize];
-      ctx.produceRecord("words", bin, std::move(bin));
+      std::string bin = kDictionary[dist_(rand_) % kDictSize];
+      ctx->produceRecord("words", bin, "-");
     }
 
-    ctx.setTimer(key, bolt::timeNowMilli() + 5000);
+    ctx->setTimer(key, bolt::timeNowMilli() + 5000);
   }
 
   virtual bolt::Metadata metadata() override {
