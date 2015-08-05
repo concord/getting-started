@@ -6,7 +6,6 @@ libs = [
     ":libjemalloc.so.1"
     ,"bolt"
     ,"mesos"
-    ,"rocksdb"
     ,":libcityhash.so.0.0.0"
     ,"thriftnb"
     ,"thrift"

@@ -29,7 +29,7 @@ class WordCounter final : public bolt::Computation {
   }
 
   virtual bolt::Metadata metadata() override {
-    return {"word-counter", {"words"}, {""}};
+    return {"word-counter", {"words"}, {}};
   }
 
 
