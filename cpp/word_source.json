@@ -1,0 +1,9 @@
+{
+  "zookeeper_hosts": "localhost:2181",
+  "zookeeper_path": "/bolt",
+  "executable_name": "word_source",
+  "compress_files": ["word_source"],
+  "computation_name": "word-source",
+  "mem": 1024,
+  "cpus": 1.0
+}
