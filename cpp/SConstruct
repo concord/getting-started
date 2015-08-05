@@ -1,41 +1,42 @@
 import os, string
 EnsureSConsVersion( 2, 3, 0 )
 
+
 libs = [
-    "jemalloc"
+    ":libjemalloc.so.1"
     ,"bolt"
     ,"mesos"
     ,"rocksdb"
-    ,"cityhash"
+    ,":libcityhash.so.0.0.0"
     ,"thriftnb"
     ,"thrift"
     ,"thriftz"
     ,":libboost_thread.so.1.55.0"
     ,":libboost_regex.so.1.55.0"
-    ,"folly"
-    ,"glog"
+    ,":libfolly.so.31.0.0"
+    ,":libglog.so.0.0.0"
     ,":libboost_program_options.so.1.55.0"
     ,":libboost_system.so.1.55.0"
     ,":libboost_filesystem.so.1.55.0"
     ,":libboost_date_time.so.1.55.0"
     ,":libboost_iostreams.so.1.55.0"
-    ,"event"
-    ,"unwind"
-    ,"z"
-    ,"bz2"
-    ,"lz4"
-    ,"lzma"
-    ,"snappy"
-    ,"double-conversion"
-    ,"crypto"
+    ,":libevent-2.0.so.5.1.9"
+    ,":libunwind.so.8.0.1"
+    ,":libz.so.1.2.8"
+    ,":libbz2.so.1.0.4"
+    ,":liblz4.so.1.0.0"
+    ,":liblzma.so.5.0.0"
+    ,":libsnappy.so.1.1.4"
+    ,":libdouble-conversion.so.1.0"
+    ,":libcrypto.so.1.0.0"
     ,"rt"
     ,"pthread"
-    ,"archive"
+    ,":libarchive.so.13.1.2"
 ]
+
 
 cxxflags = [
     "-std=c++1y"
-    ,"-fuse-ld=gold"
     ,"-Wall"
     ,"-Wnon-virtual-dtor"
     ,"-Werror"
@@ -75,12 +76,15 @@ env = Environment(ENV = os.environ
                   , CPPDEFINES = cpp_defines
                   , NUM_CPU = 4
                   , JOBS = 8
-                  , CC = "gcc-5"
-                  , CXX = "g++-5"
+                  , CC = "gcc-4.9"
+                  , CXX = "g++-4.9"
                   , CCFLAGS = " ".join(cxxflags)
-                  , LINKFLAGS = ["-v"]
+                  , LD_LIBRARY_PATH="/lib:/usr/local/lib:/usr/lib:/usr/lib/x86_64-linux-gnu"
+                  # , LINKFLAGS = ["-v"]
                   , LINKCOMSTR = "CONCORD...... linking... $TARGET"
 )
+
+# print env.Dump()
 
 word_source = env.Program(target = "word_source",
                           source = Glob('word_source.cc'),
