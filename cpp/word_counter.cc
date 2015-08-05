@@ -20,7 +20,7 @@ class WordCounter final : public bolt::Computation {
     if(++counter_ % 1024 == 0) {
       std::stringstream ss;
       std::for_each(map_.begin(), map_.end(), [&ss](const auto &p) {
-        ss << '(' << p.first << " -> " << p.second << '(';
+        ss << '(' << p.first << " -> " << p.second << ')';
       });
       LOG(INFO) << "Key values stored: " << ss.str();
     }
