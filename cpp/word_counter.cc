@@ -1,6 +1,7 @@
 #include <memory>
 #include <unordered_map>
 #include <algorithm>
+#include <sstream>
 #include <concord/glog_init.hpp>
 #include <concord/Computation.hpp>
 #include <concord/time_utils.hpp>
@@ -17,9 +18,11 @@ class WordCounter final : public bolt::Computation {
   virtual void processRecord(CtxPtr ctx, bolt::FrameworkRecord &&r) override {
     map_[r.key()]++;
     if(++counter_ % 1024 == 0) {
-      std::for_each(map_.begin(), map_.end(), [](const auto &p) {
-        LOG(INFO) << p.first << " -> " << p.second;
+      std::stringstream ss;
+      std::for_each(map_.begin(), map_.end(), [&ss](const auto &p) {
+        ss << '(' << p.first << " -> " << p.second << '(';
       });
+      LOG(INFO) << "Key values stored: " << ss.str();
     }
   }
 
