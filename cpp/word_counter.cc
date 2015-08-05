@@ -1,9 +1,9 @@
 #include <memory>
 #include <unordered_map>
 #include <algorithm>
-#include <bolt/glog_init.hpp>
-#include <bolt/Computation.hpp>
-#include <bolt/time_utils.hpp>
+#include <concord/glog_init.hpp>
+#include <concord/Computation.hpp>
+#include <concord/time_utils.hpp>
 
 
 class WordCounter final : public bolt::Computation {

@@ -80,12 +80,14 @@ env = Environment(ENV = os.environ
                   , CCFLAGS = " ".join(cxxflags)
                   , LINKFLAGS = ["-v"]
                   , LINKCOMSTR = "CONCORD...... linking... $TARGET"
-              )
+)
 
 word_source = env.Program(target = "word_source",
                           source = Glob('word_source.cc'),
+                          LIBS = libs,
                           CCFLAGS = ' '.join(cxxflags))
 
 word_counter = env.Program(target = "word_counter",
-                          source = Glob('word_counter.cc'),
-                          CCFLAGS = ' '.join(cxxflags))
+                           source = Glob('word_counter.cc'),
+                           LIBS = libs,
+                           CCFLAGS = ' '.join(cxxflags))

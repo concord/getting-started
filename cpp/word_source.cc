@@ -2,9 +2,9 @@
 #include <cstdint>
 #include <vector>
 #include <random>
-#include <bolt/glog_init.hpp>
-#include <bolt/Computation.hpp>
-#include <bolt/time_utils.hpp>
+#include <concord/glog_init.hpp>
+#include <concord/Computation.hpp>
+#include <concord/time_utils.hpp>
 
 // sample from D. Knuth's 5 letter words dictionary
 // http://www-cs-faculty.stanford.edu/~uno/sgb.html
