@@ -30,6 +30,7 @@ class WordCounter
     if self.total_words % 1024 == 0
       log "Dumping words: #{self.words}"
     end
+    self.total_words += 1
   end
 
   # metadata takes no arguments, but expects a return value of a `Metadata`
