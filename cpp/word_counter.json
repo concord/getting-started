@@ -1,0 +1,12 @@
+{
+  "zookeeper_hosts": "localhost:2181",
+  "zookeeper_path": "/bolt",
+  "executable_name": "word_counter",
+  "compress_files": ["word_counter"],
+  "computation_name": "word-counter",
+  "environment_variables": [
+    "LD_LIBRARY_PATH=/lib:/usr/local/lib:/usr/lib:/usr/lib/x86_64-linux-gnu"
+  ],
+  "mem": 1024,
+  "cpus": 1.0
+}
