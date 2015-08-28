@@ -1,6 +1,6 @@
 {
   "zookeeper_hosts": "localhost:2181",
-  "zookeeper_path": "/bolt",
+  "zookeeper_path": "/concord",
   "executable_arguments": ["word_counter.py"],
   "executable_name": "runner.bash",
   "compress_files": ["word_counter.py", "runner.bash"],

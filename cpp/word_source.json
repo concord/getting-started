@@ -1,6 +1,6 @@
 {
   "zookeeper_hosts": "localhost:2181",
-  "zookeeper_path": "/bolt",
+  "zookeeper_path": "/concord",
   "executable_name": "word_source",
   "compress_files": ["word_source"],
   "computation_name": "word-source",
