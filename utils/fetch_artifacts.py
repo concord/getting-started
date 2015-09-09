@@ -29,8 +29,8 @@ def main():
         return (commit, name, subject)
 
     for build in builds:
-        infoTuple = get_build_info(build)
-        if infoTuple is not None:
+        info_tuple = get_build_info(build)
+        if info_tuple is not None:
             commit, name, subject = infoTuple
             output = " | ".join([commit, name, subject])
             print(output)
