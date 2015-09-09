@@ -3,8 +3,7 @@
   "zookeeper_path": "/concord",
   "executable_arguments": ["word_counter.rb"],
   "executable_name": "runner.bash",
-  "compress_files": ["word_counter.rb", "Gemfile.lock",
-                     "Gemfile", "runner.bash"],
+  "compress_files": ["word_counter.rb", "runner.bash"],
   "computation_name": "word-counter",
   "environment_variables": [
     "GLOG_v=2"
