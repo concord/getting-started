@@ -1,6 +1,6 @@
 #!/bin/bash --login
 
-root=$(git rev-parse --showt-toplevel)
+root=$(git rev-parse --show-toplevel)
 cd $root
 vagrant package
 hash=$(git log --pretty=format:"%h" | head -n1)
