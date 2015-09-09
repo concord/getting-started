@@ -1,6 +1,10 @@
 from concord_update import circle
 import readline, tempfile, os
 
+class ConcordException(Exception):
+    def __init__(self, message):
+        self.message = message
+
 def pad_string(value, length=20):
     remaining = length - len(value)
     if remaining > 0:
@@ -18,17 +22,19 @@ def main():
         if len(details):
             details = details[0]
         else:
-            raise ConcordException("No commits found")
+            return None
         commit = details["commit"][0:6]
         name = pad_string(details["author_name"], 20)
         subject = details["subject"]
         return (commit, name, subject)
 
     for build in builds:
-        commit, name, subject = get_build_info(build)
-        output = " | ".join([commit, name, subject])
-        print(output)
-        commit_to_build[commit] = build
+        infoTuple = get_build_info(build)
+        if infoTuple is not None:
+            commit, name, subject = infoTuple
+            output = " | ".join([commit, name, subject])
+            print(output)
+            commit_to_build[commit] = build
 
     # set up commit completion
     class CommitCompleter(object):
@@ -81,4 +87,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
