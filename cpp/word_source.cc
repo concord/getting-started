@@ -50,7 +50,10 @@ class WordSource final : public bolt::Computation {
   }
 
   virtual bolt::Metadata metadata() override {
-    return {"word-source", {}, {"words"}};
+    bolt::Metadata m;
+    m.name = "word-source";
+    m.ostreams.insert("words");
+    return m;
   }
 
   virtual void processRecord(CtxPtr ctx, bolt::FrameworkRecord &&r) override {

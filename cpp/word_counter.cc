@@ -32,7 +32,10 @@ class WordCounter final : public bolt::Computation {
   }
 
   virtual bolt::Metadata metadata() override {
-    return {"word-counter", {"words"}, {}};
+    bolt::Metadata m;
+    m.name = "word-counter";
+    m.istreams.insert({"words", bolt::Grouping::SHUFFLE});
+    return m;
   }
 
 
