@@ -36,9 +36,9 @@ class JoinWinningBids(Computation):
     def process_record(self, ctx, record):
         """ With GROUP_BY routing strategy, it is guaranteed that the same
         key will be sent to the same operator, regardless of scaling"""
-        if record.userStream == 'bids':
+        if record.stream == 'bids':
             self.cache[record.key] = record.data
-        elif record.userStream == 'imps':
+        elif record.stream == 'imps':
             bid = self.cache[record.key]
             if bid is not None:
                 ctx.process_record('winningbids', record.key, '-')
