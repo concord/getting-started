@@ -1,10 +1,12 @@
+# coding: utf-8
+
 """
 Operator: Join Winning Bids
 Creator: Concord Systems, Inc
 Date: 9.22.15
-Description: Defines a new stream called 'winningbids' that is composed of
-filtering losing bids from an input stream named 'bids' with impression data
-from a stream called 'imps'.
+Description: Outputs a new stream called 'winningbids’ from joining ‘bids’
+stream and ‘imps’ stream by its record key. Each ‘bid’ record has a TTL
+of 60s starting from the time it enters this operator
 """
 
 import concord
