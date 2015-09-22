@@ -29,7 +29,7 @@ class JoinWinningBids(Computation):
 
     def process_timer(self, ctx, key, time):
         """ Prune the cache of expired items every 'prune_time' seconds.
-        Only happens when a mutating operation is performed on the cache"""
+        Otherwise this would only happen when mutating the cache"""
         self.cache.expire()
         ctx.set_timer('cleanup_loop', (time.time() + self.prune_time) * 1000)
 
