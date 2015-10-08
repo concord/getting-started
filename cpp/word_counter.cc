@@ -17,7 +17,7 @@ class WordCounter final : public bolt::Computation {
 
   virtual void processRecord(CtxPtr ctx, bolt::FrameworkRecord &&r) override {
     map_[r.key()]++;
-    if(++counter_ % 1024 == 0) {
+    if(++counter_ % 100000 == 0) {
       std::stringstream ss;
       std::for_each(map_.begin(), map_.end(), [&ss](const auto &p) {
         ss << '(' << p.first << " -> " << p.second << ')';
@@ -34,7 +34,7 @@ class WordCounter final : public bolt::Computation {
   virtual bolt::Metadata metadata() override {
     bolt::Metadata m;
     m.name = "word-counter";
-    m.istreams.insert({"words", bolt::Grouping::SHUFFLE});
+    m.istreams.insert({"words", bolt::Grouping::GROUP_BY});
     return m;
   }
 

@@ -9,18 +9,7 @@
 // sample from D. Knuth's 5 letter words dictionary
 // http://www-cs-faculty.stanford.edu/~uno/sgb.html
 static const std::vector<std::string> kDictionary = {
-  "beach", "stock", "hurry", "saved", "sorry", "giant", "trail", "offer",
-  "ought", "rough", "daily", "avoid", "keeps", "throw", "allow", "cream",
-  "laugh", "edges", "teach", "frame", "bells", "dream", "magic", "occur",
-  "ended", "chord", "false", "skill", "holes", "dozen", "brave", "apple",
-  "climb", "outer", "pitch", "ruler", "holds", "fixed", "costs", "calls",
-  "blank", "staff", "labor", "eaten", "youth", "tones", "honor", "globe",
-  "gases", "doors", "poles", "loose", "apply", "tears", "exact", "brush",
-  "chest", "layer", "whale", "minor", "faith", "tests", "judge", "items",
-  "worry", "waste", "hoped", "strip", "begun", "aside", "lakes", "bound",
-  "depth", "candy", "event", "worse", "aware", "shell", "rooms", "ranch",
-  "image", "snake", "aloud", "dried", "likes", "motor", "pound", "knees",
-  "refer", "fully", "chain", "shirt", "flour", "drops", "spite", "orbit"};
+  "beach", "stock", "hurry", "saved", "sorry", "giant", "trail", "offer"};
 
 
 class WordSource final : public bolt::Computation {
@@ -31,9 +20,6 @@ class WordSource final : public bolt::Computation {
   virtual void init(CtxPtr ctx) override {
     LOG(INFO) << "Initializing computation [cpp]";
     ctx->setTimer("loop", bolt::timeNowMilli());
-
-    std::random_device rd;
-    rand_.seed(rd());
   }
 
   virtual void
@@ -41,12 +27,12 @@ class WordSource final : public bolt::Computation {
 
     const static auto kDictSize = kDictionary.size();
 
-    for(auto i = 0u; i < 1024; ++i) {
-      std::string bin = kDictionary[dist_(rand_) % kDictSize];
-      ctx->produceRecord("words", bin, "-");
+    for(auto i = 0u; i < 100000; ++i) {
+      std::string bin = kDictionary[i % kDictSize];
+      ctx->produceRecord("words", bin, "");
     }
 
-    ctx->setTimer(key, bolt::timeNowMilli() + 5000);
+    ctx->setTimer(key, bolt::timeNowMilli());
   }
 
   virtual bolt::Metadata metadata() override {
@@ -59,10 +45,6 @@ class WordSource final : public bolt::Computation {
   virtual void processRecord(CtxPtr ctx, bolt::FrameworkRecord &&r) override {
     LOG(FATAL) << "source does not impl processRecord";
   }
-
-  private:
-  std::mt19937 rand_;
-  std::uniform_int_distribution<uint64_t> dist_; //[0, MAX)
 };
 
 int main(int argc, char *argv[]) {
