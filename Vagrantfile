@@ -12,7 +12,7 @@ Vagrant.configure(2) do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "https://storage.googleapis.com/concord-release/concord_abe6c6.box"
+  config.vm.box = "https://storage.googleapis.com/concord-release/concord_latest.box"
 
   config.ssh.insert_key = false
   config.ssh.password = 'vagrant'
