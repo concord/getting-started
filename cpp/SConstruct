@@ -31,7 +31,7 @@ libs = [
     ,"rt"
     ,"pthread"
     ,":libarchive.so.13.1.2"
-    ,":liblttng-ust.so.0.0.0:"
+    ,":liblttng-ust.so.0.0.0"
     ,"dl"
 ]
 
