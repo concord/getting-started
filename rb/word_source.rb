@@ -11,7 +11,7 @@ def time_millis()
   (Time.now.to_f * 1000.0).to_i
 end
 
-class WordGenerator
+class WordSource
   # init takes one argument:
   # - context: the context object used to interact with the framework
   def init(context)
@@ -35,7 +35,7 @@ class WordGenerator
   # object. check out the ruby client api documentation for more information.
   def metadata
     log "Metadata called"
-    Concord::Metadata.new(name: 'word-generator', ostreams: ['words'])
+    Concord::Metadata.new(name: 'word-source', ostreams: ['words'])
   end
 end
 

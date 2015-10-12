@@ -1,10 +1,10 @@
 {
   "zookeeper_hosts": "localhost:2181",
   "zookeeper_path": "/concord",
-  "executable_arguments": ["word_generator.rb"],
+  "executable_arguments": ["word_source.rb"],
   "executable_name": "runner.bash",
-  "compress_files": ["word_generator.rb", "runner.bash"],
-  "computation_name": "word-generator",
+  "compress_files": ["word_source.rb", "runner.bash"],
+  "computation_name": "word-source",
   "environment_variables": [
     "GLOG_v=2"
   ],
