@@ -28,7 +28,7 @@ class WordSource(Computation):
         for _ in range(0, 1024):
             ctx.produce_record("words", self.sample(), '-')
 
-        # emit records every 100ms
+        # emit records every 500ms
         ctx.set_timer("main_loop", time_millis() + 5000)
 
     def process_record(self, ctx, record):
