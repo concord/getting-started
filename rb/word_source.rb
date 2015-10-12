@@ -39,4 +39,4 @@ class WordSource
   end
 end
 
-Concord::Computation.serve(WordGenerator.new)
+Concord::Computation.serve(WordSource.new)
