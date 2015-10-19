@@ -31,7 +31,7 @@ def main():
     for build in builds:
         info_tuple = get_build_info(build)
         if info_tuple is not None:
-            commit, name, subject = infoTuple
+            commit, name, subject = info_tuple
             output = " | ".join([commit, name, subject])
             print(output)
             commit_to_build[commit] = build
