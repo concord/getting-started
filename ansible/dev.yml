@@ -9,17 +9,12 @@
         - apt-transport-https
         - software-properties-common
 
-    # - name: Register mesos apt keys
-    #   sudo: yes
-    #   apt_key: state=present id=E56151BF keyserver=keyserver.ubuntu.com
-
     - name: Register apt repos
       sudo: yes
       apt_repository: repo='{{item}}' update_cache=yes state=present
       with_items:
         - ppa:ubuntu-toolchain-r/test
         - ppa:webupd8team/java
-          # - deb http://repos.mesosphere.io/ubuntu trusty main
 
     - name: Auto accept oracle jdk license
       sudo: yes
@@ -62,7 +57,6 @@
         - lttng-tools
         - liblttng-ust0
         - libstdc++6=5.1.0-0ubuntu11~14.04.1
-          #- mesos=0.23.0-1.0.ubuntu1404
         - zookeeperd
         - python-setuptools
         - oracle-java8-installer
@@ -92,39 +86,25 @@
         - url: https://storage.googleapis.com/concord-libs/mesos-0.23.0-runtime.tar.gz
           creates: /usr/local/sbin/mesos-master
 
-    # - name: Install custom debs
-    #   sudo: yes
-    #   shell: cd $(mktemp -d) && wget {{item.url}} && dpkg -i {{item.file}}
-    #          creates={{item.creates}}
-    #   with_items:
-    #     - url: https://storage.googleapis.com/concord-debs/cityhash-1.1.1-dev.deb
-    #       file: cityhash-1.1.1-dev.deb
-    #       creates: /usr/lib/libcityhash.so
-    #     - url: https://storage.googleapis.com/concord-debs/folly-0.31.0-dev.deb
-    #       file: folly-0.31.0-dev.deb
-    #       creates: /usr/lib/libfolly.so
-    #     - url: https://storage.googleapis.com/concord-debs/rocksdb-3.11.2-dev.deb
-    #       file: rocksdb-3.11.2-dev.deb
-    #       creates: /usr/lib/librocksdb.so
-    #     - url: https://storage.googleapis.com/concord-debs/thrift-0.9.2-dev.deb
-    #       file: thrift-0.9.2-dev.deb
-    #       creates: /usr/lib/libthrift.so
-
-    - name: Create install path for concord
+    - name: Install mesos init scripts
       sudo: yes
-      file: state=directory path=/usr/local/share/concord recurse=yes
+      copy: src=files/{{item}} dest=/etc/init/{{item}}
+      with_items:
+        - mesos-master.conf
+        - mesos-slave.conf
+
+    - name: Create paths
+      sudo: yes
+      file: state=directory path={{item}} recurse=yes
+      with_items:
+        - /var/log/mesos
+        - /var/lib/mesos
+        - /usr/local/share/concord
 
     - name: Install init script for concord
       sudo: yes
       copy: src=files/concord.conf dest=/etc/init/concord.conf
       register: init_script
-
-    # - name: Install mesos configs
-    #   sudo: yes
-    #   copy: src=files/mesos_hostname dest=/etc/mesos-{{item}}/hostname
-    #   with_items:
-    #     - master
-    #     - slave
 
     - name: Restart concord
       sudo: yes
