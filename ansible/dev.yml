@@ -63,6 +63,7 @@
         - ca-certificates
         - ruby2.0
         - ruby2.0-dev
+        - graphviz
 
     - name: Install pip
       sudo: yes
