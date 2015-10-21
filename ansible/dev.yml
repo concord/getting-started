@@ -1,6 +1,8 @@
 ---
 - name: Set up Concord dependencies
   hosts: all
+  vars:
+    concord_version: 0.3.0
   tasks:
     - name: Install apt tools
       sudo: yes
@@ -90,6 +92,7 @@
     - name: Install mesos init scripts
       sudo: yes
       copy: src=files/{{item}} dest=/etc/init/{{item}}
+      register: mesos_init
       with_items:
         - mesos-master.conf
         - mesos-slave.conf
@@ -107,8 +110,67 @@
       copy: src=files/concord.conf dest=/etc/init/concord.conf
       register: init_script
 
+    - name: uninstall old concord-py
+      sudo: yes
+      pip:
+        state=absent
+        name='{{item.name}}'
+        version='{{item.version}}'
+      ignore_errors: yes
+      with_items:
+        - {name: 'concord-py', version: '0.3.0'}
+        - {name: 'concord', version: '0.1.6'}
+
+    - name: install concord py
+      sudo: yes
+      pip:
+        state=present
+        name='{{item.name}}'
+        version='{{item.version}}'
+      with_items:
+        - {name: 'concord-py', version: '0.3.1'}
+        - {name: 'concord', version: '0.1.7'}
+
+    - name: uninstall concord ruby2.0 gem
+      sudo: yes
+      gem:
+        state=absent
+        name='{{item.name}}'
+        version='{{item.version}}'
+        executable=/usr/bin/gem2.0
+      ignore_errors: yes
+      with_items:
+        - {name: 'concord-ruby', version: '0.3.0'}
+
+    - name: install concord ruby2.0 gem
+      sudo: yes
+      gem:
+        state=present
+        name='{{item.name}}'
+        version='{{item.version}}'
+        executable=/usr/bin/gem2.0
+      with_items:
+        - {name: 'concord-ruby', version: '0.3.1'}
+
+    - name: Fetch and install latest concord binary
+      sudo: yes
+      shell: curl -L https://storage.googleapis.com/concord-release/concord-{{concord_version}}-bin.tar.gz | tar zxf -
+             chdir=/
+
+    - name: ldconfig
+      sudo: yes
+      shell: ldconfig
+
     - name: Restart concord
       sudo: yes
       service: name=concord state=restarted
       when: init_script.changed
+
+    - name: Restart mesos
+      sudo: yes
+      service: name=mesos-{{item}} state=restarted
+      when: mesos_init.changed
+      with_items:
+        - master
+        - slave
 
