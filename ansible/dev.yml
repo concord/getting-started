@@ -114,12 +114,11 @@
       sudo: yes
       pip:
         state=absent
-        name='{{item.name}}'
-        version='{{item.version}}'
+        name='{{item}}'
       ignore_errors: yes
       with_items:
-        - {name: 'concord-py', version: '0.3.0'}
-        - {name: 'concord', version: '0.1.6'}
+        - 'concord-py'
+        - 'concord'
 
     - name: install concord py
       sudo: yes
@@ -173,4 +172,3 @@
       with_items:
         - master
         - slave
-
