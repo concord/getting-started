@@ -67,6 +67,7 @@
         - graphviz
         - scons
         - g++-5
+        - wamerican
 
     - name: Install pip
       sudo: yes
@@ -130,6 +131,10 @@
       with_items:
         - {name: 'concord-py', version: '0.3.1'}
         - {name: 'concord', version: '0.1.7'}
+
+    - name: install virtualenv
+      sudo: yes
+      pip: state=present name=virtualenv
 
     - name: uninstall concord ruby2.0 gem
       sudo: yes
