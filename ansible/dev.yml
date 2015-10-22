@@ -58,7 +58,6 @@
         - libasan2
         - lttng-tools
         - liblttng-ust0
-        - libstdc++6=5.1.0-0ubuntu11~14.04.1
         - zookeeperd
         - python-setuptools
         - oracle-java8-installer
@@ -66,6 +65,8 @@
         - ruby2.0
         - ruby2.0-dev
         - graphviz
+        - scons
+        - g++-5
 
     - name: Install pip
       sudo: yes
