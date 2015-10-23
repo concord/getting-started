@@ -7,8 +7,8 @@ scalaVersion := "2.11.6"
 scalacOptions ++= Seq("-feature", "-language:higherKinds")
 
 libraryDependencies ++= Seq(
-  "io.concord" % "concord" % "0.1.0",
-  "io.concord" % "rawapi" % "0.1.0"
+  "io.concord" % "concord" % "0.1.1",
+  "io.concord" % "rawapi" % "0.1.1"
 )
 
 
