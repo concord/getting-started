@@ -130,7 +130,7 @@
         version='{{item.version}}'
       with_items:
         - {name: 'concord-py', version: '0.3.1'}
-        - {name: 'concord', version: '0.1.7'}
+        - {name: 'concord', version: '0.1.11'}
 
     - name: install virtualenv
       sudo: yes
