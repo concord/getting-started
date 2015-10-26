@@ -1,4 +1,4 @@
-package com.concord;
+package com.concord.wordcounter;
 
 import com.concord.*;
 import com.concord.swift.*;
