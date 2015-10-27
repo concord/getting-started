@@ -1,47 +1,39 @@
 package com.concord.wordcounter
 
-import java.util
+import java.util.{ HashSet => MutableHashSet}
 
 import com.concord._
 import com.concord.swift._
 
-class WordCounter extends Computation {
 
-  private val histogram: util.HashMap[String, Integer] = new util.HashMap()
+class WordCounter extends Computation {
+  private val wordFrequencyMap = scala.collection.mutable.HashMap[String, Int]()
   private var pidx = 0
 
-  def init(ctx: ComputationContext): Unit = {
+  override def init(ctx: ComputationContext): Unit = {
     println(s"${this.getClass.getSimpleName} initialized")
   }
 
-  def processTimer(ctx: ComputationContext, key: String, time: Long): Unit = {
-    throw new RuntimeException("Method not implemented")
-  }
+  override def processTimer(ctx: ComputationContext, key: String, time: Long): Unit = ???
 
-  def processRecord(ctx: ComputationContext, record: Record): Unit = {
-    try {
-      val key = new String(record.getKey, "UTF-8")
-      var currentValue = histogram.get(key)
-      if (currentValue != null) {
-        currentValue += 1
-        histogram.put(key, currentValue)
-      }
-      else
-        histogram.put(key, 1)
-    } catch {
-      case e: Exception => throw new RuntimeException(e)
+  override def processRecord(ctx: ComputationContext, record: Record): Unit = {
+    val key = new String(record.getKey, "UTF-8")
+    val currentValue = wordFrequencyMap.get(key)
+    currentValue match {
+      case Some(x: Int) => wordFrequencyMap.put(key, x + 1)
+      case _ => wordFrequencyMap.put(key, 1)
     }
 
     pidx += 1
     if (pidx % 1024 == 0) {
-      println(histogram.toString)
+      println(wordFrequencyMap)
     }
   }
 
-  def metadata(): Metadata = {
-    val istreams = new util.HashSet[StreamTuple]()
+  override def metadata(): Metadata = {
+    val istreams = new MutableHashSet[StreamTuple]()
     istreams.add(new StreamTuple("words", StreamGrouping.SHUFFLE))
-    new Metadata("word-counter", istreams, new util.HashSet[String]())
+    new Metadata("word-counter", istreams, new MutableHashSet[String]())
   }
 
 }
