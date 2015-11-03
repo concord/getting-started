@@ -1,15 +1,12 @@
-DISTDIR = bin
+APPNAME = computation.out
 
-all: dist
-
-clean:
-	rm -rf $(DISTDIR)
+all: build 
 
 env:
 	go env
 
 build:
-	GOOS=linux GOARCH=amd64 go build -o bin/computation
+	GOOS=linux GOARCH=amd64 go build -o $(APPNAME) 
 
 deploy:
 	concord deploy counter_manifest.json

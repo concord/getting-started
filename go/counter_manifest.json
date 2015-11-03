@@ -2,8 +2,8 @@
   "zookeeper_hosts": "localhost:2181",
   "zookeeper_path": "/concord",
   "executable_arguments": ["-counter"],
-  "executable_name": "computation",
-  "compress_files": ["./bin/computation"],
+  "executable_name": "computation.out",
+  "compress_files": ["computation.out"],
   "computation_name": "counter",
   "mem": 1024,
   "cpus": 1.0
