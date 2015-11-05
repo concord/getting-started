@@ -1,0 +1,10 @@
+{
+  "zookeeper_hosts": "localhost:2181",
+  "zookeeper_path": "/concord",
+  "executable_arguments": ["word_filter.py"],
+  "executable_name": "runner.bash",
+  "compress_files": ["word_filter.py", "runner.bash"],
+  "computation_name": "word-filter",
+  "mem": 1024,
+  "cpus": 1.0
+}
