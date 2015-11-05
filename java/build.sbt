@@ -20,5 +20,7 @@ assemblyMergeStrategy in assembly := {
 
 
 resolvers += Resolver.sonatypeRepo("public")
+
 resolvers += "clojars" at "https://clojars.org/repo"
+
 resolvers += "conjars" at "http://conjars.org/repo"
