@@ -9,7 +9,6 @@ import (
 
 var (
 	producer = flag.Bool("producer", false, "act as words producer")
-	counter  = flag.Bool("counter", false, "act as words counter")
 )
 
 func init() {
@@ -27,5 +26,4 @@ func main() {
 	}
 
 	log.Fatal(concord.Serve(comp))
-
 }
