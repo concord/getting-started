@@ -13,6 +13,10 @@ type Producer struct {
 	words []string
 }
 
+const (
+	producerTimer = "main"
+)
+
 // Metadata is called by Concord to define input/output streams for computation
 // This computation only writes data to stream "words"
 func (p *Producer) Metadata() *concord.Metadata {
@@ -29,7 +33,7 @@ func (p *Producer) Init(ctx *concord.Context) error {
 	p.words = append(p.words, "foo", "bar", "baz", "buzz")
 
 	// schedule next ProcessTimer call
-	ctx.SetTimer(time.Now(), "")
+	ctx.SetTimer(producerTimer, time.Now())
 
 	return nil
 }
@@ -41,8 +45,8 @@ func (p *Producer) ProcessTimer(ctx *concord.Context, ts int64, name string) err
 		ctx.ProduceRecord("words", w, n)
 	}
 
-	// schedule next ProcessTimer invokation
-	ctx.SetTimer(time.Now().Add(5*time.Second), "")
+	// schedule next ProcessTimer invocation
+	ctx.SetTimer(producerTimer, time.Now().Add(5*time.Second))
 
 	return nil
 }

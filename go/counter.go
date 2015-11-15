@@ -12,6 +12,10 @@ type Counter struct {
 	stats map[string]int64
 }
 
+const (
+	counterTimer = "main"
+)
+
 // Metadata is called by Concord to define input/output streams for computation
 // This computation only reads data from "words" stream
 func (c *Counter) Metadata() *concord.Metadata {
@@ -27,7 +31,7 @@ func (c *Counter) Init(ctx *concord.Context) error {
 	c.stats = make(map[string]int64)
 
 	// schedule next ProcessTimer call
-	ctx.SetTimer(time.Now(), "")
+	ctx.SetTimer(counterTimer, time.Now())
 
 	return nil
 }
@@ -36,8 +40,8 @@ func (c *Counter) Init(ctx *concord.Context) error {
 func (c *Counter) ProcessTimer(ctx *concord.Context, t int64, name string) error {
 	log.Println(c.stats)
 
-	// schedule next ProcessTimer invokation
-	ctx.SetTimer(time.Now().Add(5*time.Second), "")
+	// schedule next ProcessTimer invocation
+	ctx.SetTimer(counterTimer, time.Now().Add(5*time.Second))
 
 	return nil
 }
