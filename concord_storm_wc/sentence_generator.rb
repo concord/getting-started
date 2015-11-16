@@ -1,9 +1,16 @@
 require 'concord'
 require 'concord/utils'
 
-DICTIONARY = ['foo', 'bar', 'baz', 'qux']
+class SentenceGenerator
+  NOUNS = ['gentelmen', 'dog', 'vehicle', 'fox', 'table']
+  ADJECTIVES = ['quickly', 'quietly', 'slowly', 'faintly', 'slightly']
 
-class WordSource
+  # Method returns a random sentence made up of words from the
+  # class variable NOUNS and ADJECTIVES
+  def randomSentence
+    "The " + NOUNS.sample + " appeared " + ADJECTIVES.sample
+  end
+
   # init takes one argument:
   # - context: the context object used to interact with the framework
   def init(context)
@@ -17,7 +24,7 @@ class WordSource
   # - time: the time the timer was scheduled to trigger at
   def process_timer(context, key, time)
     (0..1024).each do |i|
-      context.produce_record('words', DICTIONARY.sample, '')
+      context.produce_record('sentences', '', self.randomSentence)
     end
     context.set_timer(key, Concord::Utils.time_millis + 5000)
   end
@@ -26,8 +33,8 @@ class WordSource
   # object. check out the ruby client api documentation for more information.
   def metadata
     Concord::Utils.log_to_stderr("Metadata called")
-    Concord::Metadata.new(name: 'word-source', ostreams: ['words'])
+    Concord::Metadata.new(name: 'sentence-generator', ostreams: ['sentences'])
   end
 end
 
-Concord::Computation.serve(WordSource.new)
+Concord::Computation.serve(SentenceGenerator.new)
