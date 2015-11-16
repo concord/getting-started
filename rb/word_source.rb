@@ -1,23 +1,14 @@
 require 'concord'
+require 'concord/utils'
 
 DICTIONARY = ['foo', 'bar', 'baz', 'qux']
-
-def log(str)
-  $stderr.puts str
-  $stderr.flush
-end
-
-def time_millis()
-  (Time.now.to_f * 1000.0).to_i
-end
 
 class WordSource
   # init takes one argument:
   # - context: the context object used to interact with the framework
   def init(context)
-    future = time_millis
-    log "Initialized Computation"
-    context.set_timer('default', time_millis)
+    Concord::Utils.log_to_stderr("Initialized Computation")
+    context.set_timer('default', Concord::Utils.time_millis)
   end
 
   # process_timer takes three arguments:
@@ -28,13 +19,13 @@ class WordSource
     (0..1024).each do |i|
       context.produce_record('words', DICTIONARY.sample, '')
     end
-    context.set_timer(key, time_millis + 5000)
+    context.set_timer(key, Concord::Utils.time_millis + 5000)
   end
 
   # metadata takes no arguments, but expects a return value of a `Metadata`
   # object. check out the ruby client api documentation for more information.
   def metadata
-    log "Metadata called"
+    Concord::Utils.log_to_stderr("Metadata called")
     Concord::Metadata.new(name: 'word-source', ostreams: ['words'])
   end
 end

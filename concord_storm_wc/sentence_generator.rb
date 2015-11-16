@@ -14,7 +14,7 @@ class SentenceGenerator
   # init takes one argument:
   # - context: the context object used to interact with the framework
   def init(context)
-    Concord::Utils.log("Initialized Computation")
+    Concord::Utils.log_to_stderr("Initialized Computation")
     context.set_timer('default', Concord::Utils.time_millis)
   end
 
@@ -32,7 +32,7 @@ class SentenceGenerator
   # metadata takes no arguments, but expects a return value of a `Metadata`
   # object. check out the ruby client api documentation for more information.
   def metadata
-    Concord::Utils.log("Metadata called")
+    Concord::Utils.log_to_stderr("Metadata called")
     Concord::Metadata.new(name: 'sentence-generator', ostreams: ['sentences'])
   end
 end

@@ -13,7 +13,7 @@ class WordCounter
   # - context: the context object provided by the framework, used to communicate
   #   with the framework
   def init(context)
-    Concord::Utils.log("Initialized word counter")
+    Concord::Utils.log_to_stderr("Initialized word counter")
   end
 
   # process_record takes two arguments:
@@ -25,14 +25,14 @@ class WordCounter
     self.words[key] += 1
     self.total_words += 1
     if self.total_words % 1024 == 0
-      Concord::Utils.log("Dumping words: #{self.words}")
+      Concord::Utils.log_to_stder("Dumping words: #{self.words}")
     end
   end
 
   # metadata takes no arguments, but expects a return value of a `Metadata`
   # object. check out the ruby client api documentation for more information.
   def metadata
-    Concord::Utils.log("Metadata called")
+    Concord::Utils.log_to_stderr("Metadata called")
     Concord::Metadata.new(name: 'word-counter',
                           istreams: [['words',
                            Concord::Thrift::StreamGrouping::GROUP_BY]])

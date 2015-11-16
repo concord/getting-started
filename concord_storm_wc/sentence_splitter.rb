@@ -4,7 +4,7 @@ require 'concord/utils'
 # Stateless computation that splits sentences into words
 class SentenceSplitter
   def init(context)
-    Concord::Utils.log("Initialized Sentence Splitter")
+    Concord::Utils.log_to_stderr("Initialized Sentence Splitter")
   end
 
   def process_record(context, record)
@@ -17,7 +17,7 @@ class SentenceSplitter
   end
 
   def metadata
-    Concord::Utils.log("Metadata called")
+    Concord::Utils.log_to_stderr("Metadata called")
     Concord::Metadata.new(name: 'sentence-splitter',
                           istreams: ['sentences'],
                           ostreams: ['words'])
