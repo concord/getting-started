@@ -18,9 +18,10 @@ class SentenceSplitter
 
   def metadata
     Concord::Utils.log_to_stderr("Metadata called")
-    Concord::Metadata.new(name: 'sentence-splitter',
-                          istreams: ['sentences'],
-                          ostreams: ['words'])
+    Concord::Metadata.new(
+      name: 'sentence-splitter',
+      istreams: [['sentences'], Concord::Thrift::StreamGrouping::ROUND_ROBIN],
+      ostreams: ['words'])
   end
 end
 
