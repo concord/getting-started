@@ -1,0 +1,13 @@
+---
+- name: Download zipkin web service
+  sudo: yes
+  get_url: url='{{zipkin_repo}}'/io/zipkin/zipkin-web/'{{zipkin_version}}'/zipkin-web-'{{zipkin_version}}'-all.jar
+           dest=/usr/share/zipkin-web.jar
+
+- name: Copy startup script to /etc/init
+  sudo: yes
+  copy: src=web.conf dest=/etc/init/
+
+- name: Start zipkin web service
+  service: name=web state=restarted
+  sudo: yes

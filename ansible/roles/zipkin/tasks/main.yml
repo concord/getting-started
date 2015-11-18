@@ -1,0 +1,5 @@
+---
+- include: cassandra.yml
+- include: collector.yml
+- include: query.yml
+- include: web.yml

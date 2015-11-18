@@ -1,0 +1,30 @@
+---
+- name: Add PPA Key
+  apt_key: url=http://packages.confluent.io/deb/1.0/archive.key state=present
+  sudo: yes
+
+- name: Add PPA
+  apt_repository: repo='deb [arch=all] http://packages.confluent.io/deb/1.0 stable main'
+                  state=present update_cache=yes
+  sudo: yes
+
+- name: Install kafka
+  apt: name=confluent-kafka-2.11.5 state=present
+  sudo: yes
+
+- name: Install Kafka server config
+  template: src=server.properties.j2 dest=/etc/kafka/server.properties
+  sudo: yes
+
+- name: Copy kafka upstart script
+  copy: src=kafka.conf dest=/etc/init/
+  sudo: yes
+
+- name: Copy Kafka upstart override
+  copy: dest=/etc/init/kafka.override
+        content="manual"
+  sudo: yes
+
+- name: Start Kafka
+  service: name=kafka state=restarted
+  sudo: yes

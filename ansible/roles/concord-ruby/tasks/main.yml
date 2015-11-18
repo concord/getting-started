@@ -1,0 +1,17 @@
+---
+
+- name: uninstall concord ruby2.0 gem
+  sudo: yes
+  gem:
+    state=absent
+    name='concord-ruby'
+    executable=/usr/bin/gem2.0
+  ignore_errors: yes
+
+- name: install concord ruby2.0 gem
+  sudo: yes
+  gem:
+    state=present
+    version='{{concord_ruby_version}}'
+    name='concord-ruby'
+    executable=/usr/bin/gem2.0

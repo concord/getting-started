@@ -1,0 +1,5 @@
+---
+kafka_broker_id: 0
+zookeeper_hosts: '127.0.0.1:2181'
+kafka_zookeeper_chroot: '/kafka'
+kafka_auto_create_topics: true

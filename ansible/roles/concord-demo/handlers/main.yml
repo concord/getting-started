@@ -1,0 +1,14 @@
+---
+
+- name: Restart concord
+  sudo: yes
+  service: name=concord state=restarted
+  when: init_script.changed
+
+- name: Restart mesos
+  sudo: yes
+  service: name=mesos-{{item}} state=restarted
+  when: mesos_init.changed
+  with_items:
+    - master
+    - slave

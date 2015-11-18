@@ -1,0 +1,13 @@
+---
+- name: Download zipkin collector service
+  get_url: url='{{zipkin_repo}}'/io/zipkin/zipkin-collector-service/'{{zipkin_version}}'/zipkin-collector-service-'{{zipkin_version}}'-all.jar
+           dest=/usr/share/zipkin-collector.jar
+  sudo: yes
+
+- name: Copy startup script to /etc/init
+  copy: src=collector.conf dest=/etc/init/
+  sudo: yes
+
+- name: Start zipkin collector service
+  service: name=collector state=restarted
+  sudo: yes
