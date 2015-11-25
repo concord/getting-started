@@ -95,7 +95,8 @@
 - name: Install mesos init scripts
   sudo: yes
   copy: src={{item}} dest=/etc/init/{{item}}
-  register: mesos_init
+  notify:
+    - Restart mesos
   with_items:
     - mesos-master.conf
     - mesos-slave.conf
@@ -108,15 +109,16 @@
     - /var/lib/mesos
     - /usr/local/share/concord
 
-- name: Install init script for concord
-  sudo: yes
-  copy: src=concord.conf dest=/etc/init/concord.conf
-  register: init_script
-
 - name: Fetch and install latest concord binary
   sudo: yes
   shell: curl -L https://storage.googleapis.com/concord-release/concord-{{concord_version}}-bin.tar.gz | tar zxf -
          chdir=/
+
+- name: Install init script for concord
+  sudo: yes
+  copy: src=concord.conf dest=/etc/init/concord.conf
+  notify:
+    - Restart concord
 
 - name: ldconfig
   sudo: yes
