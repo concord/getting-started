@@ -10,19 +10,23 @@
   sudo: yes
 
 - name: Install Cassandra
-  apt: name=dsc30 state=present update_cache=yes
+  apt: name='cassandra=2.2.3' state=present update_cache=yes
+  sudo: yes
+
+- name: Install dsc
+  apt: name='dsc22=2.2.3-1' state=present
   sudo: yes
 
 - name: Stop foreground instance of Cassandra
   service: name=cassandra state=stopped
   sudo: yes
-
+  
+- name: Install new cassandra configuration file
+  template: src=cassandra.yaml.j2 dest=/etc/cassandra/cassandra.yaml
+  sudo: yes
+  
 - name: Clear cassandra system data
   file: path={{ item }} state=absent
   with_fileglob:
     - /var/lib/cassandra/data/system/*
-  sudo: yes
-
-- name: Start Cassandra
-  service: name=cassandra state=restarted
   sudo: yes

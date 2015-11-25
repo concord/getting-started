@@ -1,3 +1,10 @@
 ---
 zipkin_repo: https://jcenter.bintray.com
 zipkin_version: 1.25.0
+
+cassandra_listen_addr: "127.0.0.1"
+cassandra_rpc_addr: "0.0.0.0"
+cassandra_broadcast_rpc_addr: "127.0.0.1"
+cassandra_simpleSeedProvider_seed_addrs: "127.0.0.1"
+cassandra_start_rpc: "true"
+

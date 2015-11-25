@@ -1,5 +1,31 @@
 ---
 - include: cassandra.yml
+  
+- name: Download zipkin schema
+  get_url: url=https://raw.githubusercontent.com/openzipkin/zipkin/'{{zipkin_version}}'/zipkin-cassandra-core/src/main/resources/cassandra-schema-cql3.txt
+           dest=/tmp
+  sudo: yes
+
+- name: Start cassandra to install schema
+  service: name=cassandra state=started
+  sudo: yes
+
+  # TODO: Use wait_for instead of sleeping
+- name: Wait for cassandra to startup
+  shell: sleep 10
+
+- name: Install zipkin schema
+  shell: cat /tmp/cassandra-schema-cql3.txt | cqlsh --debug localhost
+  sudo: yes
+
+- name: Perform cleanup
+  file: state=absent path=/tmp/cassandra-schema-cql3.txt
+  sudo: yes
+  
+- name: Restart Cassandra
+  service: name=cassandra state=restarted
+  sudo: yes
+  
 - include: collector.yml
 - include: query.yml
 - include: web.yml
