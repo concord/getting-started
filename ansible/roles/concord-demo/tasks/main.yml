@@ -1,0 +1,125 @@
+---
+
+- name: Install apt tools
+  sudo: yes
+  apt: state=present name={{item}}
+  with_items:
+    - apt-transport-https
+    - software-properties-common
+
+- name: Register apt repos
+  sudo: yes
+  apt_repository: repo='{{item}}' update_cache=yes state=present
+  with_items:
+    - ppa:ubuntu-toolchain-r/test
+    - ppa:webupd8team/java
+
+- name: Auto accept oracle jdk license
+  sudo: yes
+  shell: echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
+
+- name: Make SBT available for install
+  sudo: yes
+  shell: echo "deb https://dl.bintray.com/sbt/debian /" | tee /etc/apt/sources.list.d/sbt.list
+
+- name: Check GPG key for SBT debian
+  sudo: yes
+  shell: apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 642AC823
+
+- name: Install apt packages
+  sudo: yes
+  apt: state=present name={{item}} update_cache=yes
+  with_items:
+    - git
+    - curl
+    - bzip2
+    - libntl0
+    - libmpfr4
+    - libssl1.0.0
+    - libgflags2
+    - libboost-thread1.55.0
+    - libboost-regex1.55.0
+    - libboost-program-options1.55.0
+    - libboost-system1.55.0
+    - libboost-filesystem1.55.0
+    - libboost-date-time1.55.0
+    - libboost-iostreams1.55.0
+    - libevent-2.0-5
+    - libunwind8
+    - libdouble-conversion1
+    - liblz4-1
+    - liblzma5
+    - libsnappy1
+    - libjemalloc1
+    - libgoogle-glog0
+    - zlib1g
+    - libbz2-1.0
+    - libarchive13
+    - libcurl3-nss
+    - libsvn1
+    - libsasl2-2
+    - libapr1
+    - libasan2
+    - lttng-tools
+    - liblttng-ust0
+    - zookeeperd
+    - sbt
+    - python-setuptools
+    - oracle-java8-installer
+    - ca-certificates
+    - ruby2.0
+    - ruby2.0-dev
+    - graphviz
+    - scons
+    - g++-5
+    - wamerican
+
+- name: Install custom libs
+  sudo: yes
+  shell: curl -L {{item.url}} | tar zxf -
+         chdir=/ creates={{item.creates}}
+  with_items:
+    - url: https://storage.googleapis.com/concord-libs/cityhash-1.1.1-lib.tar.gz
+      creates: /usr/local/lib/libcityhash.so
+    - url: https://storage.googleapis.com/concord-libs/folly-0.31.0-lib.tar.gz
+      creates: /usr/local/lib/libfolly.so
+    - url: https://storage.googleapis.com/concord-libs/rocksdb-3.11.2-lib.tar.gz
+      creates: /usr/local/lib/librocksdb.so
+    - url: https://storage.googleapis.com/concord-libs/thrift-0.9.2-lib.tar.gz
+      creates: /usr/local/lib/libthrift.so
+    - url: https://storage.googleapis.com/concord-libs/mesos-0.23.1-lib.tar.gz
+      creates: /usr/local/lib/libmesos.so
+    - url: https://storage.googleapis.com/concord-libs/mesos-0.23.1-runtime.tar.gz
+      creates: /usr/local/sbin/mesos-master
+
+- name: Install mesos init scripts
+  sudo: yes
+  copy: src={{item}} dest=/etc/init/{{item}}
+  notify:
+    - Restart mesos
+  with_items:
+    - mesos-master.conf
+    - mesos-slave.conf
+
+- name: Create paths
+  sudo: yes
+  file: state=directory path={{item}} recurse=yes
+  with_items:
+    - /var/log/mesos
+    - /var/lib/mesos
+    - /usr/local/share/concord
+
+- name: Fetch and install latest concord binary
+  sudo: yes
+  shell: curl -L https://storage.googleapis.com/concord-release/concord-{{concord_version}}-bin.tar.gz | tar zxf -
+         chdir=/
+
+- name: Install init script for concord
+  sudo: yes
+  copy: src=concord.conf dest=/etc/init/concord.conf
+  notify:
+    - Restart concord
+
+- name: ldconfig
+  sudo: yes
+  shell: ldconfig

@@ -1,0 +1,32 @@
+---
+
+- name: Add datastax community repo
+  copy: dest=/etc/apt/sources.list.d/cassandra.sources.list
+        content="deb http://debian.datastax.com/community stable main"
+  sudo: yes
+
+- name: Add datastax repository key to aptitude trusted keys
+  apt_key: url=https://debian.datastax.com/debian/repo_key state=present
+  sudo: yes
+
+- name: Install Cassandra
+  apt: name='cassandra=2.2.3' state=present update_cache=yes
+  sudo: yes
+
+- name: Install dsc
+  apt: name='dsc22=2.2.3-1' state=present
+  sudo: yes
+
+- name: Stop foreground instance of Cassandra
+  service: name=cassandra state=stopped
+  sudo: yes
+  
+- name: Install new cassandra configuration file
+  template: src=cassandra.yaml.j2 dest=/etc/cassandra/cassandra.yaml
+  sudo: yes
+  
+- name: Clear cassandra system data
+  file: path={{ item }} state=absent
+  with_fileglob:
+    - /var/lib/cassandra/data/system/*
+  sudo: yes

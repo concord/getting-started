@@ -1,0 +1,13 @@
+---
+- name: Download zipkin query service
+  sudo: yes
+  get_url: url='{{zipkin_repo}}'/io/zipkin/zipkin-query-service/'{{zipkin_version}}'/zipkin-query-service-'{{zipkin_version}}'-all.jar
+           dest=/usr/share/zipkin-query.jar
+
+- name: Copy startup script to /etc/init
+  sudo: yes
+  copy: src=query.conf dest=/etc/init/
+
+- name: Start zipkin query service
+  service: name=query state=restarted
+  sudo: yes

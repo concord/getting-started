@@ -1,0 +1,12 @@
+---
+
+- name: Restart concord
+  sudo: yes
+  service: name=concord state=restarted
+
+- name: Restart mesos
+  sudo: yes
+  service: name=mesos-{{item}} state=restarted
+  with_items:
+    - master
+    - slave
