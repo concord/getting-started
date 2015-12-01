@@ -72,6 +72,7 @@
     - graphviz
     - scons
     - g++-5
+    - g++-4.9
     - wamerican
 
 - name: Install custom libs
