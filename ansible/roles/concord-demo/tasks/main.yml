@@ -51,7 +51,7 @@
     - liblzma5
     - libsnappy1
     - libjemalloc1
-    - libgoogle-glog0
+    - libgoogle-glog-dev
     - zlib1g
     - libbz2-1.0
     - libarchive13
