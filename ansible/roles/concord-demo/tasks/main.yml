@@ -85,7 +85,7 @@
     - url: https://storage.googleapis.com/concord-libs/folly-0.31.0-lib.tar.gz
       creates: /usr/local/lib/libfolly.so
     - url: https://storage.googleapis.com/concord-libs/rocksdb-4.1.0-lib.tar.gz
-      creates: /usr/local/lib/librocksdb.so
+      creates: /usr/local/lib/librocksdb.so.4.1
     - url: https://storage.googleapis.com/concord-libs/thrift-0.9.2-lib.tar.gz
       creates: /usr/local/lib/libthrift.so
     - url: https://storage.googleapis.com/concord-libs/mesos-0.23.1-lib.tar.gz
