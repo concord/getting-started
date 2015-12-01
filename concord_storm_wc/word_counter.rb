@@ -25,7 +25,7 @@ class WordCounter
     self.words[key] += 1
     self.total_words += 1
     if self.total_words % 1024 == 0
-      Concord::Utils.log_to_stder("Dumping words: #{self.words}")
+      Concord::Utils.log_to_stderr("Dumping words: #{self.words}")
     end
   end
 
