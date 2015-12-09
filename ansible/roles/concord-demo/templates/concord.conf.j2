@@ -1,0 +1,9 @@
+description "concord"
+
+start on startup
+
+respawn
+
+env LD_LIBRARY_PATH=/usr/local/lib
+env MESOS_NATIVE_JAVA_LIBRARY=/usr/local/lib/libmesos.so
+exec java -DMESOS_NATIVE_JAVA_LIBRARY=/usr/local/lib/libmesos.so -cp /usr/local/share/concord/concord-scheduler-'{{ concord_version }}'.jar com.concord.scheduler.Scheduler -l 127.0.0.1:11211 -m zk://127.0.0.1:2181/mesos -k zk://127.0.0.1:2181/kafka -c zk://127.0.0.1:2181/concord -n concord
