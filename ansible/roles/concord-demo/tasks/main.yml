@@ -117,7 +117,7 @@
 
 - name: Install init script for concord
   sudo: yes
-  copy: src=concord.conf dest=/etc/init/concord.conf
+  template: src=concord.conf.j2 dest=/etc/init/concord.conf
   notify:
     - Restart concord
 
