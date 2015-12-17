@@ -1,9 +1,9 @@
 {
   "zookeeper_hosts": "localhost:2181",
   "zookeeper_path": "/concord",
-  "executable_name": "word_source",
-  "compress_files": ["word_source"],
-  "computation_name": "word-source",
+  "executable_name": "sentence_generator",
+  "compress_files": ["sentence_generator"],
+  "computation_name": "sentence_generator",
   "environment_variables": [
     "LD_LIBRARY_PATH=/lib:/usr/local/lib:/usr/lib:/usr/lib/x86_64-linux-gnu"
   ],

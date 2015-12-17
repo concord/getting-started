@@ -55,7 +55,6 @@ cxxflags = [
     ,"-Wno-unused-parameter"
     ,"-Wcast-align"
     ,"-Wmissing-field-initializers"
-    # ,"-flto" # TODO(agallego): enable later
 ]
 
 cpp_defines = ["FOLLY_HAVE_PTHREAD_ATFORK"]
@@ -82,18 +81,19 @@ env = Environment(ENV = os.environ
                   , CXX = "g++-4.9"
                   , CCFLAGS = " ".join(cxxflags)
                   , LD_LIBRARY_PATH="/lib:/usr/local/lib:/usr/lib:/usr/lib/x86_64-linux-gnu"
-                  # , LINKFLAGS = ["-v"]
-                  , LINKCOMSTR = "CONCORD...... linking... $TARGET"
 )
 
-# print env.Dump()
-
-word_source = env.Program(target = "word_source",
-                          source = Glob('word_source.cc'),
+word_source = env.Program(target = "sentence_splitter",
+                          source = Glob('sentence_splitter.cc'),
                           LIBS = libs,
                           CCFLAGS = ' '.join(cxxflags))
 
 word_counter = env.Program(target = "word_counter",
                            source = Glob('word_counter.cc'),
+                           LIBS = libs,
+                           CCFLAGS = ' '.join(cxxflags))
+
+word_counter = env.Program(target = "sentence_generator",
+                           source = Glob('sentence_generator.cc'),
                            LIBS = libs,
                            CCFLAGS = ' '.join(cxxflags))

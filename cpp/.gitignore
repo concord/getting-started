@@ -1,3 +1,6 @@
 .sconsign.dblite
 word_counter*
 word_source*
+*.o
+sentence_splitter
+sentence_generator

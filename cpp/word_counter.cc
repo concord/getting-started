@@ -12,7 +12,7 @@ class WordCounter final : public bolt::Computation {
   using CtxPtr = bolt::Computation::CtxPtr;
 
   virtual void init(CtxPtr ctx) override {
-    LOG(INFO) << "Init word count sink";
+    LOG(INFO) << "Initializing word count sink [cpp]";
   }
 
   virtual void processRecord(CtxPtr ctx, bolt::FrameworkRecord &&r) override {
@@ -27,9 +27,7 @@ class WordCounter final : public bolt::Computation {
   }
 
   virtual void
-  processTimer(CtxPtr ctx, const std::string &key, int64_t time) override {
-    LOG(FATAL) << "sink does not impl processTimer";
-  }
+  processTimer(CtxPtr ctx, const std::string &key, int64_t time) override {}
 
   virtual bolt::Metadata metadata() override {
     bolt::Metadata m;
