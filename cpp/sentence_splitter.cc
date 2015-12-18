@@ -1,9 +1,10 @@
 #include <memory>
 #include <sstream>
+#include <vector>
+#include <iterator>
 #include <concord/glog_init.hpp>
 #include <concord/Computation.hpp>
 #include <concord/time_utils.hpp>
-
 
 class SentenceSplitter final : public bolt::Computation {
   public:
@@ -15,9 +16,10 @@ class SentenceSplitter final : public bolt::Computation {
   virtual void processRecord(CtxPtr ctx, bolt::FrameworkRecord &&r) override {
     std::stringstream ss(r.key());
     std::string token;
-    while(std::getline(ss, token, ' ')) { // split by whitespace
+    do {
+      ss >> token;
       ctx->produceRecord("words", token, "");
-    }
+    } while(ss);
   }
 
   virtual void
