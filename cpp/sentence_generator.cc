@@ -36,7 +36,7 @@ class SentenceGenerator final : public bolt::Computation {
   processTimer(CtxPtr ctx, const std::string &key, int64_t time) override {
     for(auto i = 0u; i < 10000; ++i) {
       std::string bin = kHowDoILoveTheeLines[i % kHowDoILoveTheeLines.size()];
-      ctx->produceRecord("words", bin, "");
+      ctx->produceRecord("sentences", bin, "");
     }
     ctx->setTimer(key, bolt::timeNowMilli());
   }
