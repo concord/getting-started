@@ -1,5 +1,5 @@
 ---
-concord_version: 0.3.8
+concord_version: 0.3.9
 concord_mesos_version: 0.23.1
 concord_java_flags:
   - "server"
