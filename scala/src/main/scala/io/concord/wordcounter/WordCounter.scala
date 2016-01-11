@@ -1,9 +1,9 @@
-package com.concord.wordcounter
+package io.concord.wordcounter
 
 import java.util.{ HashSet => MutableHashSet}
 
-import com.concord._
-import com.concord.swift._
+import io.concord._
+import io.concord.swift._
 
 
 class WordCounter extends Computation {
