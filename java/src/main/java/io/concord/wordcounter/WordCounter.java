@@ -1,7 +1,7 @@
-package com.concord.wordcounter;
+package io.concord.wordcounter;
 
-import com.concord.*;
-import com.concord.swift.*;
+import io.concord.*;
+import io.concord.swift.*;
 import java.util.*;
 
 public class WordCounter extends Computation {
@@ -43,4 +43,5 @@ public class WordCounter extends Computation {
   public static void main(String[] args) {
     ServeComputation.serve(new WordCounter());
   }
+  
 }
