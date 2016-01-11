@@ -1,0 +1,10 @@
+{
+  "zookeeper_hosts": "localhost:2181",
+  "zookeeper_path": "/concord",
+  "executable_arguments": ["sentence_splitter.py"],
+  "executable_name": "runner.bash",
+  "compress_files": ["sentence_splitter.py", "runner.bash"],
+  "computation_name": "sentence-splitter",
+  "mem": 1024,
+  "cpus": 1.0
+}
