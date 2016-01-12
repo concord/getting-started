@@ -30,7 +30,7 @@ class WordCounter(Computation):
     def metadata(self):
         return Metadata(
             name='word-counter',
-            istreams=['words'],
+            istreams=[('words', StreamGrouping.GROUP_BY)],
             ostreams=[])
 
 serve_computation(WordCounter())

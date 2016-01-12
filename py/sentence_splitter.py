@@ -18,8 +18,8 @@ class SentenceSplitter(Computation):
 
     def metadata(self):
         return Metadata(
-            name='sentence-splitter'
-            istreams=[('sentences', StreamGrouping.GROUP_BY)]
-            ostreams='words')
+            name='sentence-splitter',
+            istreams=['sentences'],
+            ostreams=['words'])
 
 serve_computation(SentenceSplitter())
