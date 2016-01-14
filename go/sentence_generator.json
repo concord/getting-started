@@ -1,0 +1,9 @@
+{
+  "zookeeper_hosts": "localhost:2181",
+  "zookeeper_path": "/concord",
+  "executable_name": "sentence_generator.o",
+  "compress_files": ["./bin/sentence_generator.o"],
+  "computation_name": "sentence-generator",
+  "mem": 1024,
+  "cpus": 1.0
+}
