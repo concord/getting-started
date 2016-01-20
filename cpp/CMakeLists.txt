@@ -4,6 +4,7 @@ set(VERSION 0.1.0)
 
 link_directories (
   /usr/local/lib
+  /usr/lib/x86_64-linux-gnu
   )
 
 
@@ -17,7 +18,7 @@ set (CPP_CLIENT_LIBRARIES
   :libpthread.so
   :libdouble-conversion.so.1.0
   :libboost_system.so.1.55.0
-  :libevent-2.0.so.5.1.9
+  :libevent.a # Hack couldn't get libevent to link
   :libglog.so.0
   :libstdc++.so.6
   :libssl.so.1.0.0
