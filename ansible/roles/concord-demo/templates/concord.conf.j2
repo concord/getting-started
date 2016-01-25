@@ -7,7 +7,7 @@ respawn
 env LD_LIBRARY_PATH=/usr/local/lib
 env MESOS_NATIVE_JAVA_LIBRARY=/usr/local/lib/libmesos-{{ concord_mesos_version }}.so
 exec java {% for flag in concord_java_flags %}-{{ flag }} {% endfor %} {% for k, v in concord_java_options.iteritems() %}-{{k}}={{v}} {% endfor %} -cp \
-     /usr/local/share/concord/concord-scheduler-{{ concord_version }}.jar \
+     /usr/local/share/concord/concord.jar \
      com.concord.scheduler.Scheduler \
      --listen 127.0.0.1:11211 \
      --concord-master zk://127.0.0.1:2181/concord \
