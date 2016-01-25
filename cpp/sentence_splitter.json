@@ -1,8 +1,8 @@
 {
   "zookeeper_hosts": "localhost:2181",
   "zookeeper_path": "/concord",
-  "executable_name": "sentence_splitter",
-  "compress_files": ["sentence_splitter"],
+  "executable_name": "./build/sentence_splitter",
+  "compress_files": ["./build/sentence_splitter"],
   "computation_name": "word-splitter",
   "environment_variables": [
     "LD_LIBRARY_PATH=/lib:/usr/local/lib:/usr/lib:/usr/lib/x86_64-linux-gnu"
