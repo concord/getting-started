@@ -44,7 +44,7 @@
     - libboost-filesystem1.55.0
     - libboost-date-time1.55.0
     - libboost-iostreams1.55.0
-    - libevent-2.0-5
+    - libevent-dev # needed for libevent.a
     - libunwind8
     - libdouble-conversion1
     - liblz4-1
@@ -74,6 +74,8 @@
     - g++-5
     - g++-4.9
     - wamerican
+    - build-essential
+    - cmake
 
 - name: Install custom libs
   sudo: yes
