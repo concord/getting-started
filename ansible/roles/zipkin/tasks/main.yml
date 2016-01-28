@@ -2,7 +2,7 @@
 - include: cassandra.yml
   
 - name: Download zipkin schema
-  get_url: url=https://raw.githubusercontent.com/openzipkin/zipkin/'{{zipkin_version}}'/zipkin-cassandra-core/src/main/resources/cassandra-schema-cql3.txt
+  get_url: url=https://raw.githubusercontent.com/openzipkin/zipkin/{{zipkin_version}}/zipkin-cassandra-core/src/main/resources/cassandra-schema-cql3.txt
            dest=/tmp
   sudo: yes
 
