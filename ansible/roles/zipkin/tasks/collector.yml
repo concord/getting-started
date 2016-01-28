@@ -1,6 +1,6 @@
 ---
 - name: Download zipkin collector service
-  get_url: url='{{zipkin_repo}}'/io/zipkin/zipkin-collector-service/'{{zipkin_version}}'/zipkin-collector-service-'{{zipkin_version}}'-all.jar
+  get_url: url={{zipkin_repo}}/io/zipkin/zipkin-collector-service/{{zipkin_version}}/zipkin-collector-service-{{zipkin_version}}-all.jar
            dest=/usr/share/zipkin-collector.jar
   sudo: yes
 
