@@ -1,0 +1,12 @@
+{
+  "zookeeper_hosts": "localhost:2181",
+  "zookeeper_path": "/concord",
+  "executable_name": "./build/ctr_calculator",
+  "compress_files": ["./build/ctr_calculator"],
+  "computation_name": "ctr-calculator",
+  "environment_variables": [
+    "LD_LIBRARY_PATH=/lib:/usr/local/lib:/usr/lib:/usr/lib/x86_64-linux-gnu"
+  ],
+  "mem": 1024,
+  "cpus": 1.0
+}

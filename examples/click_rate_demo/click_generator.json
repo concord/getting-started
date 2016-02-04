@@ -1,0 +1,12 @@
+{
+  "zookeeper_hosts": "localhost:2181",
+  "zookeeper_path": "/concord",
+  "executable_name": "./build/click_generator",
+  "compress_files": ["./build/click_generator"],
+  "computation_name": "click-generator",
+  "environment_variables": [
+    "LD_LIBRARY_PATH=/lib:/usr/local/lib:/usr/lib:/usr/lib/x86_64-linux-gnu"
+  ],
+  "mem": 1024,
+  "cpus": 1.0
+}
