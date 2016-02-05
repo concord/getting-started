@@ -1,5 +1,5 @@
 {
-  "zookeeper_hosts": "localhost:2181",
+  "zookeeper_hosts": "146.148.95.225:2181",
   "zookeeper_path": "/concord",
   "executable_name": "./build/impression_generator",
   "compress_files": ["./build/impression_generator"],
@@ -8,5 +8,6 @@
     "LD_LIBRARY_PATH=/lib:/usr/local/lib:/usr/lib:/usr/lib/x86_64-linux-gnu"
   ],
   "mem": 1024,
-  "cpus": 1.0
+  "cpus": 1.0,
+  "docker_container" : "concord/runtime_executor:0.3.11"
 }

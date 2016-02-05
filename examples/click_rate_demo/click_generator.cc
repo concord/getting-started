@@ -20,22 +20,25 @@ class ClickGenerator final : public bolt::Computation {
   processTimer(CtxPtr ctx, const std::string &key, int64_t time) override {
     thrift::AdEvent event;
     event.__set_type(thrift::StreamEvent::CLICK);
-    event.__set_id(randomClick());
-    ctx->produceRecord("clicks", "-", toBytes(event));
-    ctx->setTimer("loop", bolt::timeNowMilli() * 500);
+    event.__set_id(randomImpression());
+    std::string serEvent = toBytes(event);
+    for (auto i = 0u; i < 50; ++i) {
+      ctx->produceRecord("clicks", std::move(serEvent), "-");
+    }
+    ctx->setTimer("loop", bolt::timeNowMilli() + 1000);
   }
 
   virtual bolt::Metadata metadata() override {
     bolt::Metadata m;
     m.name = "click-generator";
-    m.ostreams.insert("impressions");
+    m.ostreams.insert("clicks");
     return m;
   }
 
   virtual void processRecord(CtxPtr ctx, bolt::FrameworkRecord &&r) override {}
 
  private:
-  uint64_t randomClick() { return dist_(rand_); }
+  uint64_t randomImpression() { return dist_(rand_); }
 
   std::mt19937 rand_;
   std::uniform_int_distribution<uint64_t> dist_;

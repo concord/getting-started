@@ -72,7 +72,7 @@ endfunction ()
 add_custom_command(
   OUTPUT ${THRIFT_SOURCES}
   DEPENDS ${PROJECT_SOURCE_DIR}/thrift/click.thrift
-  COMMAND thrift -v --gen cpp -o ${PROJECT_SOURCE_DIR} ${PROJECT_SOURCE_DIR}/thrift/click.thrift
+  COMMAND thrift -v --gen cpp:templates -o ${PROJECT_SOURCE_DIR} ${PROJECT_SOURCE_DIR}/thrift/click.thrift
   )
 
 set (CMAKE_CXX_COMPILER g++-4.9)
