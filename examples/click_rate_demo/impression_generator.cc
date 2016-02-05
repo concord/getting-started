@@ -19,10 +19,13 @@ class ImpressionGenerator final : public bolt::Computation {
   virtual void
   processTimer(CtxPtr ctx, const std::string &key, int64_t time) override {
     thrift::AdEvent event;
-    event.__set_type(thrift::StreamEvent::CLICK);
+    event.__set_type(thrift::StreamEvent::IMPRESSION);
     event.__set_id(randomImpression());
-    ctx->produceRecord("clicks", "-", toBytes(event));
-    ctx->setTimer("loop", bolt::timeNowMilli() * 500);
+    std::string serEvent = toBytes(event);
+    for (auto i = 0u; i < 5000; ++i) {
+      ctx->produceRecord("impressions", std::move(serEvent), "-");
+    }
+    ctx->setTimer("loop", bolt::timeNowMilli());
   }
 
   virtual bolt::Metadata metadata() override {
