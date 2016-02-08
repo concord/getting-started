@@ -1,5 +1,5 @@
 {
-  "zookeeper_hosts": "localhost:2181",
+  "zookeeper_hosts": "146.148.95.225:2181",
   "zookeeper_path": "/concord",
   "executable_name": "./build/impression_generator",
   "compress_files": ["./build/impression_generator"],
