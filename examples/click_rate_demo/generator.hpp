@@ -1,7 +1,6 @@
+#pragma once
 #include <random>
-
-#include "gen-cpp/click_constants.h"
-#include "gen-cpp/click_types.h"
+#include "ctr_utils.hpp"
 
 class Generator {
   public:
@@ -11,9 +10,9 @@ class Generator {
   
   protected:
   std::string randomPublisher() {
-    const auto randPub =
-      dist_(rand_) % thrift::g_click_constants.PUBLISHER_TO_STRING.size();
-    return thrift::g_click_constants.PUBLISHER_TO_STRING.at(randPub);
+    auto iterator = string_to_publisher.begin();
+    std::advance(iterator, (dist_(rand_) % string_to_publisher.size()));
+    return iterator->first;
   }
   uint64_t randomImpression() { return dist_(rand_); }
   uint64_t numberOfClicks() { return dist_(rand_) % 50; }

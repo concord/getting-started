@@ -1,7 +1,7 @@
 #pragma once
 #include <memory>
 #include <string>
-#include <algorithm>
+#include <map>
 #include <type_traits>
 
 #include <thrift/transport/TBufferTransports.h>
@@ -9,6 +9,22 @@
 #include <thrift/protocol/TJSONProtocol.h>
 
 #include "gen-cpp/click_types.h"
+
+enum class Publisher {
+  ADSTERRA,
+  UNDERTONE,
+  CLICKSOR,
+  NEXUS,
+  CONVERSANT
+};
+
+std::map<std::string, Publisher> string_to_publisher = {
+  { "ADSTERRA", Publisher::ADSTERRA },
+  { "UNDERTONE", Publisher::UNDERTONE },
+  { "CLICKSOR", Publisher::CLICKSOR },
+  { "NEXUS", Publisher::NEXUS },
+  { "CONVERSANT", Publisher::CONVERSANT }
+};
 
 thrift::AdEvent newEvent(const thrift::StreamEvent::type evnt,
                          const int32_t eId) {

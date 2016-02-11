@@ -11,9 +11,8 @@ class ImpressionGenerator final : public bolt::Computation, private Generator {
 
   ImpressionGenerator(const std::string &publisher_name)
     : publisher_(uppercaseString(publisher_name)) {
-    const auto exists =
-      thrift::g_click_constants.STRING_TO_PUBLISHER.find(publisher_);
-    if(exists == thrift::g_click_constants.STRING_TO_PUBLISHER.end()) {
+    const auto exists = string_to_publisher.find(publisher_);
+    if(exists == string_to_publisher.end()) {
       throw new std::runtime_error("Publisher does not exist for given value");
     }
   }
