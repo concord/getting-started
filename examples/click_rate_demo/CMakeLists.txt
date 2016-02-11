@@ -62,6 +62,7 @@ set (CXX_FLAG_LIST
 
 set (THRIFT_SOURCES
   ${PROJECT_SOURCE_DIR}/gen-cpp/click_types.cpp
+  ${PROJECT_SOURCE_DIR}/gen-cpp/click_constants.cpp
   )
 
 function (join VALUES SEP OUTPUT)

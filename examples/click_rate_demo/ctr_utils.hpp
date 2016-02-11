@@ -2,9 +2,20 @@
 #include <memory>
 #include <string>
 #include <type_traits>
+
 #include <thrift/transport/TBufferTransports.h>
 #include <thrift/protocol/TBinaryProtocol.h>
 #include <thrift/protocol/TJSONProtocol.h>
+
+#include "gen-cpp/click_types.h"
+
+thrift::AdEvent newEvent(const thrift::StreamEvent::type evnt,
+                         const int32_t eId) {
+  thrift::AdEvent event;
+  event.__set_type(evnt);
+  event.__set_id(eId);
+  return event;
+}
 
 template <typename T> inline T fromBytes(const char *value, int size) {
   using namespace ::apache::thrift::transport;
