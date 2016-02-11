@@ -1,6 +1,7 @@
 #pragma once
 #include <memory>
 #include <string>
+#include <algorithm>
 #include <type_traits>
 
 #include <thrift/transport/TBufferTransports.h>
@@ -15,6 +16,14 @@ thrift::AdEvent newEvent(const thrift::StreamEvent::type evnt,
   event.__set_type(evnt);
   event.__set_id(eId);
   return event;
+}
+
+std::string uppercaseString(const std::string &str) {
+  std::string uppercasedString;
+  uppercasedString.reserve(str.length());
+  std::transform(str.begin(), str.end(), uppercasedString.begin(),
+                 [](const char c) { return std::toupper(c); });
+  return uppercasedString;
 }
 
 template <typename T> inline T fromBytes(const char *value, int size) {

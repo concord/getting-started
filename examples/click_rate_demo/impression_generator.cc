@@ -9,14 +9,13 @@ class ImpressionGenerator final : public bolt::Computation, private Generator {
   public:
   using CtxPtr = bolt::Computation::CtxPtr;
 
-  ImpressionGenerator(const std::string &publisher_enum) {
-    const auto publisher = thrift::g_click_constants.INT_TO_PUBLISHER.find(
-      std::stoi(publisher_enum));
-    if(publisher == thrift::g_click_constants.INT_TO_PUBLISHER.end()) {
+  ImpressionGenerator(const std::string &publisher_name)
+    : publisher_(uppercaseString(publisher_name)) {
+    const auto exists =
+      thrift::g_click_constants.STRING_TO_PUBLISHER.find(publisher_);
+    if(exists == thrift::g_click_constants.STRING_TO_PUBLISHER.end()) {
       throw new std::runtime_error("Publisher does not exist for given value");
     }
-    publisher_ =
-      thrift::g_click_constants.PUBLISHER_TO_STRING.at(publisher->second);
   }
 
   virtual void init(CtxPtr ctx) override {
@@ -26,7 +25,8 @@ class ImpressionGenerator final : public bolt::Computation, private Generator {
 
   virtual void
   processTimer(CtxPtr ctx, const std::string &key, int64_t time) override {
-    const auto event = newEvent(thrift::StreamEvent::IMPRESSION, randomImpression());
+    const auto event =
+      newEvent(thrift::StreamEvent::IMPRESSION, randomImpression());
     auto serializedEvent = toBytes(event);
     for(auto i = 0u; i < 5000; ++i) {
       ctx->produceRecord("impressions", publisher_, std::move(serializedEvent));
@@ -44,7 +44,7 @@ class ImpressionGenerator final : public bolt::Computation, private Generator {
   virtual void processRecord(CtxPtr ctx, bolt::FrameworkRecord &&r) override {}
 
   private:
-  std::string publisher_;
+  const std::string publisher_;
 };
 
 int main(int argc, char *argv[]) {
