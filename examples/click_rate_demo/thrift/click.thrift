@@ -4,11 +4,11 @@
 namespace cpp thrift
 
 enum StreamEvent {
-  CLICK,
+  CLICK = 0,
   IMPRESSION
 }
 
 struct AdEvent {
-  1: StreamEvent type;
-  2: i64 id;
+  1: required StreamEvent type;
+  2: required i64 id;
 }
