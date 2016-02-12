@@ -36,7 +36,7 @@ thrift::AdEvent newEvent(const thrift::StreamEvent::type evnt,
 
 std::string uppercaseString(const std::string &str) {
   std::string uppercasedString;
-  uppercasedString.reserve(str.length());
+  uppercasedString.resize(str.length());
   std::transform(str.begin(), str.end(), uppercasedString.begin(),
                  [](const char c) { return std::toupper(c); });
   return uppercasedString;
