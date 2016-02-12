@@ -24,11 +24,11 @@ class ImpressionGenerator final : public bolt::Computation, private Generator {
 
   virtual void
   processTimer(CtxPtr ctx, const std::string &key, int64_t time) override {
-    const auto event =
-      newEvent(thrift::StreamEvent::IMPRESSION, randomImpression());
-    auto serializedEvent = toBytes(event);
     for(auto i = 0u; i < 5000; ++i) {
-      ctx->produceRecord("impressions", publisher_, std::move(serializedEvent));
+      const auto event =
+	newEvent(thrift::StreamEvent::IMPRESSION, randomImpression());
+      const auto serializedEvent = toBytes(event);
+      ctx->produceRecord("impressions", publisher_, serializedEvent);
     }
     ctx->setTimer("loop", bolt::timeNowMilli());
   }

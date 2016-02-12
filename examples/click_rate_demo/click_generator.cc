@@ -16,11 +16,10 @@ class ClickGenerator final : public bolt::Computation, private Generator {
 
   virtual void
   processTimer(CtxPtr ctx, const std::string &key, int64_t time) override {
-    const auto event = newEvent(thrift::StreamEvent::CLICK, randomImpression());
-    auto serializedEvent = toBytes(event);
     for(auto i = 0u; i < numberOfClicks(); ++i) {
-      ctx->produceRecord("clicks", randomPublisher(),
-                         std::move(serializedEvent));
+      const auto event = newEvent(thrift::StreamEvent::CLICK, randomImpression());
+      const auto serializedData = toBytes(event);
+      ctx->produceRecord("clicks", randomPublisher(), serializedData);
     }
     ctx->setTimer("loop", bolt::timeNowMilli());
   }
