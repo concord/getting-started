@@ -7,6 +7,10 @@ link_directories (
   /usr/lib/x86_64-linux-gnu
   )
 
+include_directories (
+  ${PROJECT_SOURCE_DIR}/include
+  ${PROJECT_SOURCE_DIR}/thrift   
+  )
 
 set (CPP_CLIENT_LIBRARIES
   :libbolt_cpp_client.so
@@ -61,8 +65,8 @@ set (CXX_FLAG_LIST
 
 
 set (THRIFT_SOURCES
-  ${PROJECT_SOURCE_DIR}/gen-cpp/click_types.cpp
-  ${PROJECT_SOURCE_DIR}/gen-cpp/click_constants.cpp
+  ${PROJECT_SOURCE_DIR}/thrift/gen-cpp/click_types.cpp
+  ${PROJECT_SOURCE_DIR}/thrift/gen-cpp/click_constants.cpp
   )
 
 function (join VALUES SEP OUTPUT)
@@ -73,7 +77,7 @@ endfunction ()
 add_custom_command(
   OUTPUT ${THRIFT_SOURCES}
   DEPENDS ${PROJECT_SOURCE_DIR}/thrift/click.thrift
-  COMMAND thrift -v --gen cpp:templates -o ${PROJECT_SOURCE_DIR} ${PROJECT_SOURCE_DIR}/thrift/click.thrift
+  COMMAND thrift -v --gen cpp:templates -o ${PROJECT_SOURCE_DIR}/thrift ${PROJECT_SOURCE_DIR}/thrift/click.thrift
   )
 
 set (CMAKE_CXX_COMPILER g++-4.9)
@@ -86,9 +90,9 @@ add_library(thrift_lib STATIC
   ${THRIFT_SOURCES}
   )
 
-add_executable (ctr_calculator ${PROJECT_SOURCE_DIR}/ctr_calculator.cc)
+add_executable (ctr_calculator ${PROJECT_SOURCE_DIR}/src/ctr_calculator.cc)
 target_link_libraries (ctr_calculator ${CPP_CLIENT_LIBRARIES} thrift_lib)
-add_executable (click_generator ${PROJECT_SOURCE_DIR}/click_generator.cc)
+add_executable (click_generator ${PROJECT_SOURCE_DIR}/src/click_generator.cc)
 target_link_libraries (click_generator ${CPP_CLIENT_LIBRARIES} thrift_lib)
-add_executable (impression_generator ${PROJECT_SOURCE_DIR}/impression_generator.cc)
+add_executable (impression_generator ${PROJECT_SOURCE_DIR}/src/impression_generator.cc)
 target_link_libraries (impression_generator ${CPP_CLIENT_LIBRARIES} thrift_lib)
