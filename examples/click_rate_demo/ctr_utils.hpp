@@ -26,11 +26,11 @@ std::map<std::string, Publisher> string_to_publisher = {
   { "CONVERSANT", Publisher::CONVERSANT }
 };
 
-thrift::AdEvent newEvent(const thrift::StreamEvent::type evnt,
-                         const int32_t eId) {
+thrift::AdEvent newEvent(const thrift::StreamEvent::type &type,
+                         const int32_t &id) {
   thrift::AdEvent event;
-  event.__set_type(evnt);
-  event.__set_id(eId);
+  event.type = type;
+  event.id = id;
   return event;
 }
 

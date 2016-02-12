@@ -1,4 +1,4 @@
-#include <map>
+#include <unordered_map>
 #include <concord/glog_init.hpp>
 #include <concord/Computation.hpp>
 #include <concord/time_utils.hpp>
@@ -22,7 +22,7 @@ struct ProviderEvents {
   
   double ctr() const {
     if(impressions_ == 0 || clicks_ >= impressions_) {
-      return 100.0;
+      return 100.0L;
     }
     return (static_cast<double>(clicks_) / static_cast<double>(impressions_))
            * 100.0;
@@ -101,7 +101,7 @@ class CtrCalculator final : public bolt::Computation {
 
   private:
   // Aggregating ad events by provider name
-  std::map<std::string, std::unique_ptr<ProviderEvents>> providerCtr_;
+  std::unordered_map<std::string, std::unique_ptr<ProviderEvents>> providerCtr_;
 };
 
 int main(int argc, char *argv[]) {
