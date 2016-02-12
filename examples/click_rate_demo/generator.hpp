@@ -15,7 +15,7 @@ class Generator {
     return iterator->first;
   }
   uint64_t randomImpression() { return dist_(rand_); }
-  uint64_t numberOfClicks() { return dist_(rand_) % 50; }
+  uint64_t numberOfClicks() { return dist_(rand_) % 100; }
 
   private:
   std::mt19937 rand_;

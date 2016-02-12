@@ -21,7 +21,7 @@ class ClickGenerator final : public bolt::Computation, private Generator {
       const auto serializedData = toBytes(event);
       ctx->produceRecord("clicks", randomPublisher(), serializedData);
     }
-    ctx->setTimer("loop", bolt::timeNowMilli());
+    ctx->setTimer("loop", bolt::timeNowMilli() + 100);
   }
 
   virtual bolt::Metadata metadata() override {
