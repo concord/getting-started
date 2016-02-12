@@ -2,6 +2,7 @@
   "zookeeper_hosts": "localhost:2181",
   "zookeeper_path": "/concord",
   "executable_name": "./build/impression_generator",
+  "executable_arguments": [ "NEXUS" ],
   "compress_files": ["./build/impression_generator"],
   "computation_name": "impression-generator",
   "environment_variables": [
