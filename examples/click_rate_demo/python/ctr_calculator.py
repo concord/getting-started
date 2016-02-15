@@ -38,7 +38,7 @@ class CtrCalculator(Computation):
 
         clicks, impressions = (0, 0)
         if record.key in self.providerCtr:
-            clicks, impressions = self.providerCtr(provider)
+            clicks, impressions = self.providerCtr[provider]
 
         if payload['type'] == 'CLICK':
             clicks += 1
