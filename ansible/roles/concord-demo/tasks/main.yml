@@ -82,7 +82,7 @@
   shell: curl -L {{item.url}} | tar zxf -
          chdir=/ creates={{item.creates}}
   with_items:
-    - url: https://storage.googleapis.com/concord-libs/thrift-0.9.3-lib.tar.gz
+    - url: https://storage.googleapis.com/concord-libs/thrift-0.9.2-lib.tar.gz
       creates: /usr/local/lib/libthrift.so
     - url: https://storage.googleapis.com/concord-libs/mesos-0.23.1-lib.tar.gz
       creates: /usr/local/lib/libmesos.so
