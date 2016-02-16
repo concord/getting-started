@@ -16,7 +16,7 @@ inside of this container.
 
 ```
 ...
-  "docker_container" : "concord/runtime_executor:0.3.12"
+  "docker_container" : "concord/runtime_executor:0.3.13"
 }
 ```
 
@@ -39,7 +39,7 @@ however build this yourself if you install the necessary deps on your local mach
 - Thrift 0.9.3 (headers, shared libs and the binary)
 - CMake (2.6)
 - C++ compiler (g++)
-- Concord C++ client lib v0.3.12 (Check out ansible scripts in this repo for more info)
+- Concord C++ client lib v0.3.13 (Check out ansible scripts in this repo for more info)
 - Project deps:
 
 ```
