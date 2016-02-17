@@ -1,0 +1,10 @@
+{
+  "zookeeper_hosts": "localhost:2181",
+  "zookeeper_path": "/concord",
+  "executable_arguments": ["ctr_calculator.py"],
+  "executable_name": "runner.bash",
+  "compress_files": ["runner.bash", "ctr_calculator.py", "click"],
+  "computation_name": "ctr-calculator",
+  "mem": 1024,
+  "cpus": 1.0
+}
