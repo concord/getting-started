@@ -3,6 +3,7 @@ import concord
 from concord.computation import (
     Computation,
     Metadata,
+    StreamGrouping,
     serve_computation
 )
 
@@ -24,13 +25,13 @@ class WordCounter(Computation):
         else:
             self.dict[record.key] = 1
 
-        if (self.pidx % 1024) == 0:
+        if (self.pidx % 10000) == 0:
             self.concord_logger.info(self.dict)
 
     def metadata(self):
         return Metadata(
             name='word-counter',
-            istreams=['words'],
+            istreams=[('words', StreamGrouping.GROUP_BY)],
             ostreams=[])
 
 serve_computation(WordCounter())

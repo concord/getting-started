@@ -9,5 +9,5 @@
   ],
   "mem": 1024,
   "cpus": 1.0,
-  "docker_container" : "concord/runtime_executor:0.3.12"
+  "docker_container" : "concord/runtime_executor:0.3.13"
 }

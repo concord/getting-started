@@ -11,9 +11,9 @@ link_directories (
 set (CPP_CLIENT_LIBRARIES
   :libbolt_cpp_client.so
   :libglog.so.0
-  :libthriftnb-0.9.3.so
-  :libthrift-0.9.3.so
-  :libthriftz-0.9.3.so
+  :libthriftnb-0.9.2.so
+  :libthrift-0.9.2.so
+  :libthriftz-0.9.2.so
   :libglog.so.0.0.0
   :libpthread.so
   :libdouble-conversion.so.1.0
