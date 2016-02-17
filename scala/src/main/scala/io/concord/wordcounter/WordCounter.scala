@@ -25,7 +25,7 @@ class WordCounter extends Computation {
     }
 
     pidx += 1
-    if (pidx % 1024 == 0) {
+    if (pidx % 10000 == 0) {
       println(wordFrequencyMap)
     }
   }

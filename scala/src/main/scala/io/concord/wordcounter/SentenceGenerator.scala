@@ -36,11 +36,11 @@ class SentenceGenerator extends Computation {
 
   override def processTimer(ctx: ComputationContext, key: String, time: Long): Unit = {
     // Stream, key, value. Empty value, no need for val
-    Range(0, 1024).foreach {
+    Range(0, 10000).foreach {
       i => ctx.produceRecord("sentences".getBytes, sample().getBytes, "-".getBytes)
     }
 
-    ctx.setTimer(key, System.currentTimeMillis() + 5000)
+    ctx.setTimer(key, System.currentTimeMillis())
   }
 
   override def metadata(): Metadata = {
