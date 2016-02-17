@@ -29,7 +29,7 @@ public class WordCounter extends Computation {
     } catch (Exception e) {
       throw new RuntimeException(e);
     }
-    if (++this.pidx % 1024 == 0) {
+    if (++this.pidx % 10000 == 0) {
       System.out.println(this.histogram.toString());
     }
   }

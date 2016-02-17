@@ -39,12 +39,12 @@ public class SentenceGenerator extends Computation {
 
   public void processTimer(ComputationContext ctx, String key, long time) {
     // Stream, key, value. Empty value, no need for val
-    for (int i = 0; i < 1024; ++i) {
+    for (int i = 0; i < 10000; ++i) {
       ctx.produceRecord("sentences".getBytes(), this.sample().getBytes(),
                         "-".getBytes());
     }
 
-    ctx.setTimer(key, System.currentTimeMillis() + 5000);
+    ctx.setTimer(key, System.currentTimeMillis());
   }
 
   public Metadata metadata() {
