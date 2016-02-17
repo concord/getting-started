@@ -14,7 +14,9 @@ class SentenceSplitter
 
   def metadata
     Concord::Metadata.new(name: 'sentence-splitter',
-                          istreams: [['sentences', Concord::Thrift::StreamGrouping::SHUFFLE]]
+                          istreams: [['sentences', Concord::Thrift::StreamGrouping::SHUFFLE]],
                           ostreams: ['words'])
   end
 end
+
+Concord::Computation.serve(SentenceSplitter.new)

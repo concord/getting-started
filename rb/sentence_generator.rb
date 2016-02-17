@@ -29,10 +29,10 @@ class SentenceGenerator
   # - key: the name of the timer that's being triggered
   # - time: the time the timer was scheduled to trigger at
   def process_timer(context, key, time)
-    (0..1024).each do |i|
+    (0..10000).each do |i|
       context.produce_record('words', SENTENCES.sample, '')
     end
-    context.set_timer(key, Concord::Utils.time_millis + 5000)
+    context.set_timer(key, Concord::Utils.time_millis)
   end
 
   # metadata takes no arguments, but expects a return value of a `Metadata`
