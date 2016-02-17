@@ -1,7 +1,7 @@
 {
   "zookeeper_hosts": "localhost:2181",
   "zookeeper_path": "/concord",
-  "executable_arguments": ["com.concord.wordcounter.SentenceSplitter"],
+  "executable_arguments": ["io.concord.wordcounter.SentenceSplitter"],
   "executable_name": "runner.bash",
   "compress_files": ["getting_started-assembly-1.0.0.jar", "runner.bash"],
   "computation_name": "sentence-splitter",
