@@ -31,7 +31,6 @@ func (p *SentenceSplitter) ProcessRecords(ctx *concord.Context, record *concord.
 	for _, word := range words {
 		ctx.ProduceRecord("words", word, "-")
 	}
-
 	return nil
 }
 
