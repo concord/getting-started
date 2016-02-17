@@ -11,7 +11,7 @@ def time_millis():
     return int(round(time.time() * 1000))
 
 class SentenceGenerator(Computation):
-    def init(self):
+    def __init__(self):
         self.sentences = [ "How do I love thee? Let me count the ways.",
                            "I love thee to the depth and breadth and height",
                            "My soul can reach, when feeling out of sight",
@@ -38,11 +38,13 @@ class SentenceGenerator(Computation):
 
     def process_timer(self, ctx, key, time):
         # stream, key, value. empty value, no need for val
-        for _ in range(0, 1024):
+        iterations = 10000
+        while iterations > 0:
+            iterations -= 1
             ctx.produce_record("sentences", self.sample(), '-')
 
         # emit records every 500ms
-        ctx.set_timer("main_loop", time_millis() + 5000)
+        ctx.set_timer("main_loop", time_millis())
 
     def process_record(self, ctx, record):
         raise Exception('process_record not implemented')
