@@ -3,8 +3,8 @@ import concord
 from concord.computation import (
     Computation,
     Metadata,
-    serve_computation,
-    StreamGrouping
+    StreamGrouping,
+    serve_computation
 )
 
 class WordCounter(Computation):

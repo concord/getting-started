@@ -1,0 +1,10 @@
+{
+  "zookeeper_hosts": "localhost:2181",
+  "zookeeper_path": "/concord",
+  "executable_arguments": ["sentence_generator.py"],
+  "executable_name": "runner.bash",
+  "compress_files": ["sentence_generator.py", "runner.bash"],
+  "computation_name": "sentence-generator",
+  "mem": 1024,
+  "cpus": 1.0
+}
