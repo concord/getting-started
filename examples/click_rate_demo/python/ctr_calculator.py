@@ -106,7 +106,9 @@ class CtrCalculator(Computation):
         return Metadata(
             name='ctr-calculator',
             istreams=[ ('impressions', StreamGrouping.GROUP_BY),
-                        ('clicks', StreamGrouping.GROUP_BY) ])
+                        ('clicks', StreamGrouping.GROUP_BY) ]
+            ostreams=[ 'click_through_rate' ])
+    
 
 # Initializes thrift server so the concord proxy can communicate with this process via thrift RPC.=
 # Makes 'registerWithScheduler' RPC which begins a series of events that will place this operator into
