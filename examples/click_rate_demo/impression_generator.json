@@ -9,6 +9,5 @@
     "LD_LIBRARY_PATH=/lib:/usr/local/lib:/usr/lib:/usr/lib/x86_64-linux-gnu"
   ],
   "mem": 1024,
-  "cpus": 1.0,
-  "docker_container" : "concord/runtime_executor:0.3.13"
+  "cpus": 1.0
 }
