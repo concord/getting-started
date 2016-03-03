@@ -26,4 +26,4 @@ Just run:
 ```
 ./bootstrap_vagrant.sh && vagrant ssh
 ```
-and follow thee instructions [here](http://docs.concord.io/quick_start_ruby.html).
+and follow the instructions [here](http://docs.concord.io/quick_start_ruby.html).
