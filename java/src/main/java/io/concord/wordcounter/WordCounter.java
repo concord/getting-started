@@ -13,6 +13,10 @@ public class WordCounter extends Computation {
     System.out.println("WordCounter.java initialized");
   }
 
+  public void destroy() {
+    System.out.println("WordCounter.java destructing");
+  }
+
   public void processTimer(ComputationContext ctx, String key, long time) {
     throw new RuntimeException("Method not implemented");
   }
@@ -36,7 +40,7 @@ public class WordCounter extends Computation {
 
   public Metadata metadata() {
     Set<StreamTuple> istreams = new HashSet<StreamTuple>();
-    istreams.add(new StreamTuple("words", StreamGrouping.SHUFFLE));
+    istreams.add(new StreamTuple("words", StreamGrouping.GROUP_BY));
     return new Metadata("word-counter", istreams, new HashSet<String>());
   }
 

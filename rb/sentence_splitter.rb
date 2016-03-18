@@ -6,6 +6,12 @@ class SentenceSplitter
     Concord::Utils.log_to_stderr("Initialized Splitter computation")
   end
 
+  # Use the destroy method to perform some cleanup before the framework
+  # kills this process
+  def destroy
+    Concord::Utils.log_to_stderr("Destructing splitter computation")
+  end
+
   def process_record(context, record)
     record.key.split do |word|
       context.produce_record('words', word, '-')

@@ -16,6 +16,12 @@ class WordCounter
     Concord::Utils.log_to_stderr("Initialized word counter")
   end
 
+  # Use the destroy method to perform some cleanup before the framework
+  # kills this process
+  def destroy
+    Concord::Utils.log_to_stderr("Destructing word counter")
+  end
+
   # process_record takes two arguments:
   # - context: the context object used to interact with the framework
   # - record: the incoming record to be processed

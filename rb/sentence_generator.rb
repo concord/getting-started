@@ -24,6 +24,12 @@ class SentenceGenerator
     context.set_timer('default', Concord::Utils.time_millis)
   end
 
+  # Use the destroy method to perform some cleanup before the framework
+  # kills this process
+  def destroy
+    Concord::Utils.log_to_stderr("Destructing sentence generator")
+  end
+
   # process_timer takes three arguments:
   # - context: the context object used to interact with the framework
   # - key: the name of the timer that's being triggered

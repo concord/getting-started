@@ -10,6 +10,10 @@ public class SentenceSplitter extends Computation {
     System.out.println("SentenceSplitter.java initialized");
   }
 
+  public void destroy() {
+    System.out.println("SentenceSplitter.java destructing");
+  }
+
   public void processTimer(ComputationContext ctx, String key, long time) {
     throw new RuntimeException("Method not implemented");
   }

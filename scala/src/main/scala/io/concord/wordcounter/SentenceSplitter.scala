@@ -10,6 +10,10 @@ class SentenceSplitter extends Computation {
     println(s"${this.getClass.getSimpleName} initialzed")
   }
 
+  override def destroy(): Unit = {
+    println(s"${this.getClass.getSimpleName} destructing")
+  }
+
   override def processRecord(ctx: ComputationContext, record: Record): Unit = {
     val sentences = new String(record.getKey, "UTF-8")
     val words = sentences.split(" ")
@@ -27,4 +31,10 @@ class SentenceSplitter extends Computation {
     new Metadata("sentence-splitter", istreams, ostreams)
   }
 
+}
+
+object SentenceSplitter {
+  def main(args: Array[String]): Unit = {
+    ServeComputation.serve(new SentenceSplitter())
+  }
 }
