@@ -26,10 +26,13 @@ class SentenceGenerator final : public bolt::Computation {
   public:
   using CtxPtr = bolt::Computation::CtxPtr;
 
-
   virtual void init(CtxPtr ctx) override {
     LOG(INFO) << "Initializing sentence generator [cpp]";
     ctx->setTimer("loop", bolt::timeNowMilli());
+  }
+
+  virtual void destroy() override {
+    LOG(INFO) << "Destructing sentence generator [cpp]";
   }
 
   virtual void

@@ -33,6 +33,10 @@ public class SentenceGenerator extends Computation {
     ctx.setTimer("loop", System.currentTimeMillis());
   }
 
+  public void destroy() {
+    System.out.println("SentencGenerator.java destructing");
+  }
+
   public void processRecord(ComputationContext ctx, Record record) {
     throw new RuntimeException("Method not implemented");
   }

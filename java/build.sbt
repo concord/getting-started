@@ -1,14 +1,14 @@
 name := "getting_started"
 
-version := "1.0.0"
+version := "1.0.1"
 
 scalaVersion := "2.11.6"
 
 scalacOptions ++= Seq("-feature", "-language:higherKinds")
 
 libraryDependencies ++= Seq(
-  "io.concord" % "concord" % "0.1.1",
-  "io.concord" % "rawapi" % "0.1.3"
+  "io.concord" % "concord" % "0.1.2",
+  "io.concord" % "rawapi" % "0.2.5"
 )
 
 

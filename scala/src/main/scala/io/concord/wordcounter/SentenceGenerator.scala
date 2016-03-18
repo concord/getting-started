@@ -32,6 +32,10 @@ class SentenceGenerator extends Computation {
     ctx.setTimer("loop", System.currentTimeMillis())
   }
 
+  override def destroy(): Unit = {
+    println(s"${this.getClass.getSimpleName} destructing")
+  }
+
   override def processRecord(ctx: ComputationContext, record: Record): Unit = ???
 
   override def processTimer(ctx: ComputationContext, key: String, time: Long): Unit = {

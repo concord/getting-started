@@ -13,6 +13,10 @@ class SentenceSplitter final : public bolt::Computation {
     LOG(INFO) << "Initializing sentence splitter [cpp]";
   }
 
+  virtual void destroy() override {
+    LOG(INFO) << "Destructing sentence splitter [cpp]";
+  }
+
   virtual void processRecord(CtxPtr ctx, bolt::FrameworkRecord &&r) override {
     std::stringstream ss(r.key());
     std::string token;

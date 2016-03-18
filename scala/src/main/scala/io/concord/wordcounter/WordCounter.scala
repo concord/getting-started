@@ -14,6 +14,10 @@ class WordCounter extends Computation {
     println(s"${this.getClass.getSimpleName} initialized")
   }
 
+  override def destroy(): Unit = {
+    println(s"${this.getClass.getSimpleName} destructing")
+  }
+
   override def processTimer(ctx: ComputationContext, key: String, time: Long): Unit = ???
 
   override def processRecord(ctx: ComputationContext, record: Record): Unit = {
