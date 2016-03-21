@@ -8,6 +8,6 @@
   "environment_variables": [
     "GLOG_v=2"
   ],
-  "mem": 1024,
+  "mem": 512,
   "cpus": 1.0
 }

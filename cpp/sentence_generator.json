@@ -7,6 +7,6 @@
   "environment_variables": [
     "LD_LIBRARY_PATH=/lib:/usr/local/lib:/usr/lib:/usr/lib/x86_64-linux-gnu"
   ],
-  "mem": 1024,
+  "mem": 512,
   "cpus": 1.0
 }
