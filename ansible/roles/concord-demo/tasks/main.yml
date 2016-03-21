@@ -70,7 +70,6 @@
     - ruby2.0
     - ruby2.0-dev
     - graphviz
-    - scons
     - g++-5
     - g++-4.9
     - wamerican

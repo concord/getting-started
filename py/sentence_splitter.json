@@ -5,6 +5,6 @@
   "executable_name": "runner.bash",
   "compress_files": ["sentence_splitter.py", "runner.bash"],
   "computation_name": "sentence-splitter",
-  "mem": 1024,
+  "mem": 512,
   "cpus": 1.0
 }
