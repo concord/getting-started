@@ -13,6 +13,6 @@ rm -rf $target_dir/*
 cd $target_dir
 cp $getting_started/*.json $target_dir
 cp $getting_started/runner.bash $target_dir
-for f in $(find $git_root -iname "getting_started-assembly-*.jar"); do
+for f in $(find $getting_started -iname "getting_started-assembly-*.jar"); do
     cp $f $target_dir
 done

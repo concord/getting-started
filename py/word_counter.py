@@ -15,6 +15,9 @@ class WordCounter(Computation):
     def init(self, ctx):
         self.concord_logger.info("Counter initialized")
 
+    def destroy(self):
+        self.concord_logger.info("Source destroyed")
+
     def process_timer(self, ctx, key, time):
         raise Exception('process_timer not implemented')
 

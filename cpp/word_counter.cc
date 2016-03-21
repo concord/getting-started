@@ -15,6 +15,10 @@ class WordCounter final : public bolt::Computation {
     LOG(INFO) << "Initializing word count sink [cpp]";
   }
 
+  virtual void destroy() override {
+    LOG(INFO) << "Destructing word count sink [cpp]";
+  }
+
   virtual void processRecord(CtxPtr ctx, bolt::FrameworkRecord &&r) override {
     map_[r.key()]++;
     if(++counter_ % 100000 == 0) {

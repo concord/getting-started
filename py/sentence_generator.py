@@ -36,6 +36,9 @@ class SentenceGenerator(Computation):
         self.concord_logger.info("Source initialized")
         ctx.set_timer('loop', time_millis())
 
+    def destroy(self):
+        self.concord_logger.info("Source destroyed")
+
     def process_timer(self, ctx, key, time):
         # stream, key, value. empty value, no need for val
         iterations = 10000
