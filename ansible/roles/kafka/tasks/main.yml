@@ -4,12 +4,12 @@
   sudo: yes
 
 - name: Add PPA
-  apt_repository: repo='deb [arch=all] http://packages.confluent.io/deb/2.0 stable main'
-                  state=present update_cache=yes
+  apt_repository: repo='deb http://packages.confluent.io/deb/2.0 stable main'
+                  state=present
   sudo: yes
 
 - name: Install kafka
-  apt: name=confluent-platform-2.11.7 state=present
+  apt: name=confluent-platform-2.11.7 state=present update_cache=yes
   sudo: yes
 
 - name: Install Kafka server config
