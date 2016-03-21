@@ -36,7 +36,7 @@ class WordCounter extends Computation {
 
   override def metadata(): Metadata = {
     val istreams = new MutableHashSet[StreamTuple]()
-    istreams.add(new StreamTuple("words", StreamGrouping.SHUFFLE))
+    istreams.add(new StreamTuple("words", StreamGrouping.GROUP_BY))
     new Metadata("word-counter", istreams, new MutableHashSet[String]())
   }
 
