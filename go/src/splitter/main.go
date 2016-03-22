@@ -21,6 +21,11 @@ func (p *SentenceSplitter) Init(ctx *concord.Context) error {
 	return nil
 }
 
+func (p *SentenceSplitter) Destroy() error {
+	log.Println("[INFO] Destroying sentence-splitter")
+	return nil
+}
+
 func (p *SentenceSplitter) ProcessTimer(ctx *concord.Context, ts int64, name string) error {
 	return nil
 }

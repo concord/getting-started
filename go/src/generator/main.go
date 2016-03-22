@@ -52,6 +52,12 @@ func (p *SentenceGenerator) Init(ctx *concord.Context) error {
 	return nil
 }
 
+// Destruction of computation. This is method is called by Concord
+func (p *SentenceGenerator) Destroy() error {
+	log.Println("[INFO] Destroying SentenceGenerator")
+	return nil
+}
+
 // ProcessTimer is called by Concord at the time specified by SetTimer call.
 func (p *SentenceGenerator) ProcessTimer(ctx *concord.Context, ts int64, name string) error {
 	for i := 0; i < 10000; i++ {

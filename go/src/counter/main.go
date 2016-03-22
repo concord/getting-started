@@ -27,6 +27,12 @@ func (c *WordCounter) Init(ctx *concord.Context) error {
 	return nil
 }
 
+// Destruction of computation. This method is called by Concord
+func (c *WordCounter) Destroy() error {
+	log.Println("[INFO] Destroying WordWordCounter")
+	return nil
+}
+
 // ProcessTimer is called by Concord at the time speicifed by SetTimer call.
 func (c *WordCounter) ProcessTimer(ctx *concord.Context, t int64, name string) error {
 	return nil
