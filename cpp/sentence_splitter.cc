@@ -18,7 +18,7 @@ class SentenceSplitter final : public bolt::Computation {
   }
 
   virtual void processRecord(CtxPtr ctx, bolt::FrameworkRecord &&r) override {
-    std::stringstream ss(r.key());
+    std::stringstream ss(std::move(r.key));
     std::string token;
     do {
       ss >> token;

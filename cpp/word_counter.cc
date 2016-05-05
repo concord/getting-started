@@ -20,7 +20,7 @@ class WordCounter final : public bolt::Computation {
   }
 
   virtual void processRecord(CtxPtr ctx, bolt::FrameworkRecord &&r) override {
-    map_[r.key()]++;
+    map_[r.key]++;
     if(++counter_ % 100000 == 0) {
       std::stringstream ss;
       std::for_each(map_.begin(), map_.end(), [&ss](const auto &p) {
