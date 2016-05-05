@@ -1,6 +1,6 @@
 ---
-concord_version: 0.3.16
-concord_mesos_version: 0.23.1
+concord_version: 0.3.16.3
+concord_mesos_version: 0.28.0
 concord_java_flags:
   - "server"
   - "XX:+UseConcMarkSweepGC"
