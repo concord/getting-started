@@ -12,7 +12,9 @@ Vagrant.configure(2) do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "ubuntu/trusty64"
+  config.vm.box = "concord/ubuntu/trusty64"
+  config.vm.box_url = "https://goo.gl/v7gGRk"
+  config.vm.box_download_location_trusted = "true"
 
   # config.ssh.insert_key = false
   # config.ssh.password = 'vagrant'
