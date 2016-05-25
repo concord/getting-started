@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/rblafford/workspace/getting-started/cpp/word_counter.cc
+memory
+-
+unordered_map
+-
+algorithm
+-
+sstream
+-
+concord/glog_init.hpp
+-
+concord/Computation.hpp
+-
+concord/time_utils.hpp
+-
+

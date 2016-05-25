@@ -1,0 +1,3 @@
+/home/rblafford/workspace/getting-started/cpp/build/CMakeFiles/sentence_generator.dir
+/home/rblafford/workspace/getting-started/cpp/build/CMakeFiles/sentence_splitter.dir
+/home/rblafford/workspace/getting-started/cpp/build/CMakeFiles/word_counter.dir

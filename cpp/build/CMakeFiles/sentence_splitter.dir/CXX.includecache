@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/rblafford/workspace/getting-started/cpp/sentence_splitter.cc
+memory
+-
+sstream
+-
+vector
+-
+iterator
+-
+concord/glog_init.hpp
+-
+concord/Computation.hpp
+-
+concord/time_utils.hpp
+-
+
