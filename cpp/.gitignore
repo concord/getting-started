@@ -6,6 +6,5 @@ sentence_splitter
 sentence_generator
 CMakeCache.txt
 CMakeFiles/
-build/
 Makefile
 cmake_install.cmake
