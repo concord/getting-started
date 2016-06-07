@@ -1,6 +1,6 @@
 {
-  "zookeeper_hosts": "localhost:2181",
-  "zookeeper_path": "/concord",
+  "zookeeper_hosts": "master.mesos:2181",
+  "zookeeper_path": "/concord-mesos/dcos",  
   "executable_arguments": ["sentence_splitter.rb"],
   "executable_name": "runner.bash",
   "compress_files": ["sentence_splitter.rb", "runner.bash"],
@@ -9,5 +9,6 @@
     "GLOG_v=2"
   ],
   "mem": 512,
-  "cpus": 1.0
+  "cpus": 1.0,
+  "docker_container": "concord/runtime_executor:0.3.16.4"  
 }

@@ -1,9 +1,10 @@
 {
-  "zookeeper_hosts": "localhost:2181",
-  "zookeeper_path": "/concord",
+  "zookeeper_hosts": "master.mesos:2181",
+  "zookeeper_path": "/concord-mesos/dcos",    
   "executable_name": "./bin/word_counter.o",
   "compress_files": ["./bin/word_counter.o"],
   "computation_name": "word-counter",
   "mem": 1024,
-  "cpus": 1.0
+  "cpus": 1.0,
+  "docker_container": "concord/runtime_executor:0.3.16.4"
 }
