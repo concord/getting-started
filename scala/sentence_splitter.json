@@ -1,10 +1,11 @@
 {
-  "zookeeper_hosts": "localhost:2181",
-  "zookeeper_path": "/concord",
+  "zookeeper_hosts": "master.mesos:2181",
+  "zookeeper_path": "/concord-mesos/dcos",
   "executable_arguments": ["io.concord.wordcounter.SentenceSplitter"],
   "executable_name": "runner.bash",
   "compress_files": ["getting_started-assembly-1.0.1.jar", "runner.bash"],
   "computation_name": "sentence-splitter",
   "mem": 512,
-  "cpus": 1.0
+  "cpus": 1.0,
+  "docker_container": "concord/runtime_executor:0.3.16.4"  
 }
