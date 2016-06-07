@@ -1,6 +1,6 @@
 {
-  "zookeeper_hosts": "localhost:2181",
-  "zookeeper_path": "/concord",
+  "zookeeper_hosts": "master.mesos:2181",
+  "zookeeper_path": "/concord-mesos/dcos",
   "executable_name": "./build/sentence_splitter",
   "compress_files": ["./build/sentence_splitter"],
   "computation_name": "word-splitter",
@@ -8,5 +8,6 @@
     "LD_LIBRARY_PATH=/lib:/usr/local/lib:/usr/lib:/usr/lib/x86_64-linux-gnu"
   ],
   "mem": 512,
-  "cpus": 1.0
+  "cpus": 1.0,
+  "docker_container": "concord/runtime_executor:0.3.16.4"
 }
