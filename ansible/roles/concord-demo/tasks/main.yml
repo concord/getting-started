@@ -25,7 +25,7 @@
 
 - name: Auto accept oracle jdk license
   sudo: yes
-  shell: echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
+  shell: sudo echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | sudo /usr/bin/debconf-set-selections
 
 - name: Make SBT available for install
   sudo: yes
@@ -34,6 +34,12 @@
 - name: Check GPG key for SBT debian
   sudo: yes
   shell: apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 642AC823
+
+- name: Install java
+  sudo: yes
+  apt: state=present name={{item}} update_cache=yes force=yes
+  with_items:
+    - oracle-java8-installer
 
 - name: Install apt packages
   sudo: yes
@@ -74,7 +80,6 @@
     - zookeeperd
     - sbt
     - python-setuptools
-    - oracle-java8-installer
     - ca-certificates
     - ruby2.0
     - ruby2.0-dev
