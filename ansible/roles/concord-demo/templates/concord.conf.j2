@@ -13,4 +13,5 @@ exec java {% for flag in concord_java_flags %}-{{ flag }} {% endfor %} {% for k,
      --concord-master zk://127.0.0.1:2181/concord \
      --mesos-master zk://127.0.0.1:2181/mesos \
      --kafka-path zk://127.0.0.1:2181/kafka \
-     --framework-name concord
+     --framework-name concord \
+     --kafka-distributed-runtime {{ concord_enable_at_least_once}}
