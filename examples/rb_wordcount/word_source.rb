@@ -32,7 +32,7 @@ class WordSource
   # object. check out the ruby client api documentation for more information.
   def metadata
     Concord::Utils.log_to_stderr("Metadata called")
-    Concord::Metadata.new(name: 'word-source', ostreams: ['sentences'])
+    Concord::Metadata.new(name: 'word-source', ostreams: ['words'])
   end
 end
 
