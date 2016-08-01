@@ -14,7 +14,7 @@ Vagrant.configure(2) do |config|
   # boxes at https://atlas.hashicorp.com/search.
   config.vm.box = "concord/ubuntu/trusty64"
   config.vm.box_url = "http://bit.ly/24mzdMC"
-  config.vm.box_download_location_trusted = "true"
+  #config.vm.box_download_location_trusted = "true"
 
   # config.ssh.insert_key = false
   # config.ssh.password = 'vagrant'
