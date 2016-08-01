@@ -1,5 +1,5 @@
 ---
-concord_version: 0.4.3
+concord_version: 0.4.3.2
 concord_enable_at_least_once: "false"
 concord_mesos_version: 0.28.0
 concord_java_flags:
