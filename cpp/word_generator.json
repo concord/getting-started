@@ -1,0 +1,12 @@
+{
+  "zookeeper_hosts": "localhost:2181",
+  "zookeeper_path": "/concord",
+  "executable_name": "./build/word_generator",
+  "compress_files": ["./build/word_generator"],
+  "computation_name": "word-generator",
+  "environment_variables": [
+    "LD_LIBRARY_PATH=/lib:/usr/local/lib:/usr/lib:/usr/lib/x86_64-linux-gnu"
+  ],
+  "mem": 512,
+  "cpus": 1.0
+}

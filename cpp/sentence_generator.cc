@@ -38,8 +38,8 @@ class SentenceGenerator final : public bolt::Computation {
   virtual void
   processTimer(CtxPtr ctx, const std::string &key, int64_t time) override {
     for(auto i = 0u; i < 10000; ++i) {
-      std::string bin = kHowDoILoveTheeLines[i % kHowDoILoveTheeLines.size()];
-      ctx->produceRecord("sentences", bin, "");
+      //std::string bin = kHowDoILoveTheeLines[i % kHowDoILoveTheeLines.size()];
+      ctx->produceRecord("sentences", "k", "v");
     }
     ctx->setTimer(key, bolt::timeNowMilli());
   }
