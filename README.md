@@ -2,7 +2,7 @@
 
 # Concord Stream Processor
 
-####A modern and performant distributed stream processing framework
+#### A modern and performant distributed stream processing framework
 
 Concord is a native stream processing framework (implemented in C++) built on Apache Mesos,
 built to address some of the following issues commonly encountered when creating streaming
